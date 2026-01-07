@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Data Scientist & Machine Learning Engineer specializing in building intelligent systems with Python, TensorFlow, and cloud technologies.">
+  <meta name="keywords"
+    content="Data Scientist, Machine Learning Engineer, Python, TensorFlow, PyTorch, Deep Learning, NLP, Computer Vision">
+  <meta name="author" content="MICHAEL GURULE">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Michael Gurule | Data Scientist & Machine Learning Engineer">
+  <meta property="og:description" content="Portfolio showcasing machine learning projects and data science expertise">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="Assets/images/og-preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Michael Gurule | Data Scientist & ML Engineer">
+  <meta name="twitter:description" content="Portfolio showcasing machine learning projects">
+
+  <title>Michael Gurule | Data Scientist & Machine Learning Engineer</title>
+
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon (Data/Chart Icon) -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23061E29' width='100' height='100' rx='20'/%3E%3Cpath fill='%235F9598' d='M20 70 L20 45 L35 45 L35 70 Z M40 70 L40 30 L55 30 L55 70 Z M60 70 L60 50 L75 50 L75 70 Z'/%3E%3Ccircle fill='%235F9598' cx='75' cy='35' r='8'/%3E%3C/svg%3E">
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Michael Gurule",
+    "jobTitle": "Data Scientist & Machine Learning Engineer",
+    "url": "https://michaelgurule.com",
+    "sameAs": [
+      "https://linkedin.com/in/michael-j-gurule",
+      "https://github.com/michael-gurule",
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" aria-label="Home">
+        <span class="logo-bracket">&lt;</span>Michael Gurule<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="nav-mobile" aria-hidden="true">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <canvas id="particle-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+          </path>
+          <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+          <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+          <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        Data Scientist & Machine Learning Engineer
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line">Hi, I'm</span>
+        <span class="title-name gradient-text">Michael Gurule</span>
+      </h1>
+      <p class="hero-tagline">I build intelligent systems that solve real-world problems at scale.
+
+      <p class="subtext">Data Scientist and Machine Learning Engineer specializing in deployment-grade analytics
+        platforms. I transform intricate technical challenges into scalable solutions that drive measurable business
+        impact, from optimizing multi-million dollar supply chains to architecting real-time intelligence systems.</p>
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-value" data-target="9">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" data-target="10">0</span><span class="stat-suffix">M+</span>
+          <span class="stat-label">Business Impact</span>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+          View My Work
+        </a>
+        <a href="Assets/resume/2026 - MG - RESUME.pdf" class="btn btn-secondary" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download CV
+        </a>
+      </div>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <h2 class="section-title fade-in">About <span>Me</span></h2>
+      <div class="about-content">
+        <div class="about-image fade-in">
+          <div class="image-frame">
+            <!-- Replace with your photo -->
+
+
+
+            <img src="Assets/images/profile/profile-photo.jpg" alt="Michael Gurule - Data Scientist" loading="lazy">
+            <div class="image-overlay"></div>
+          </div>
+          <div class="experience-badge">
+            <span class="exp-years">9+</span>
+            <span class="exp-label">Years of Experience</span>
+          </div>
+        </div>
+        <div class="about-text fade-in fade-in-delay-1">
+          <h3 class="about-subtitle">
+            Passionate about turning data into <span class="highlight">intelligence</span>
+          </h3>
+          <p>
+            I'm a data scientist and ML engineer with 9 years of experience turning sophisticated algorithms into
+            systems that actually work in production. My career started in Data Strategy consulting at firms like JS
+            Held and. Sedgwick, where I learned to translate between executive priorities and technical execution. That
+            foundation taught me something crucial: the best model in the world means nothing if it can't ship.
+          </p>
+          <p>
+            These days, I split my time between building production ML systems and completing my MS in Data Science at
+            University of Colorado. My projects span financial optimization, aerospace defense applications, and
+            multi-sensor intelligence platforms. Each one focuses on the same principle: technical depth matched with
+            practical deployment.
+          </p>
+          <p>
+            Currently based in the Denver area and open to remote opportunities. I'm particularly interested in roles
+            where I can apply deep technical skills to meaningful problems, whether that's in defense, finance, or
+            emerging tech applications.
+          </p>
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <div class="highlight-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a4 4 0 0 0-4 4c0 1.5.8 2.8 2 3.4V12h4V9.4c1.2-.6 2-1.9 2-3.4a4 4 0 0 0-4-4z"></path>
+                  <path d="M8 14h8"></path>
+                  <path d="M8 18h8"></path>
+                  <path d="M10 22h4"></path>
+                </svg>
+              </div>
+              <div class="highlight-text">
+                <h4>ML & AI</h4>
+                <p>Deep learning, Time-Series Forecasting, Optimization Algorithms, Reinforcement Learning, NLP,
+                  Physics-informed Neural Networks, Feature Engineering
+                </p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3v18h18"></path>
+                  <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+              </div>
+              <div class="highlight-text">
+                <h4>Data Eng & MLOps</h4>
+                <p>AWS (S3, EC2, Lambda), ETL pipelines, Docker, Git/Github, RESTful API design, CI/CD, JSON/XML, Model
+                  Deployment, monitoring</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                  </path>
+                </svg>
+              </div>
+              <div class="highlight-text">
+                <h4>Specializations</h4>
+                <p>Multi-agent systems, Sensor Fusion, Geospatial Analytics, Convex Optimization (CVXPY), Signal
+                  Processing,Graph Neural Networks, Adversarial Robustness, Real-time Data Streaming</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <h2 class="section-title fade-in">Technical <span>Skills</span></h2>
+      <p class="section-subtitle fade-in">
+        Technologies and tools I use to bring ideas to life
+      </p>
+
+      <!-- Interactive Skills Visualization -->
+      <div class="skills-visualization fade-in">
+        <canvas id="skills-radar" aria-label="Skills radar chart showing proficiency levels"></canvas>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="skills-grid">
+        <!-- Languages & Frameworks -->
+        <div class="skill-category fade-in">
+          <h3 class="category-title">
+            <span class="category-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </span>
+            Languages & Frameworks
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag" data-level="expert">Python</span>
+            <span class="skill-tag" data-level="expert">TensorFlow</span>
+            <span class="skill-tag" data-level="expert">PyTorch</span>
+            <span class="skill-tag" data-level="advanced">scikit-learn</span>
+            <span class="skill-tag" data-level="advanced">Pandas</span>
+            <span class="skill-tag" data-level="advanced">NumPy</span>
+            <span class="skill-tag" data-level="intermediate">SQL</span>
+            <span class="skill-tag" data-level="intermediate">R</span>
+          </div>
+        </div>
+
+        <!-- ML/AI Specializations -->
+        <div class="skill-category fade-in fade-in-delay-1">
+          <h3 class="category-title">
+            <span class="category-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a4 4 0 0 0-4 4c0 1.5.8 2.8 2 3.4V12h4V9.4c1.2-.6 2-1.9 2-3.4a4 4 0 0 0-4-4z"></path>
+                <path d="M8 14h8"></path>
+                <path d="M8 18h8"></path>
+                <path d="M10 22h4"></path>
+              </svg>
+            </span>
+            ML/AI Specializations
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag" data-level="expert">Deep Learning</span>
+            <span class="skill-tag" data-level="expert">NLP</span>
+            <span class="skill-tag" data-level="advanced">Computer Vision</span>
+            <span class="skill-tag" data-level="advanced">Reinforcement Learning</span>
+            <span class="skill-tag" data-level="advanced">Time Series</span>
+            <span class="skill-tag" data-level="intermediate">LLMs</span>
+          </div>
+        </div>
+
+        <!-- Data & Cloud -->
+        <div class="skill-category fade-in fade-in-delay-2">
+          <h3 class="category-title">
+            <span class="category-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+              </svg>
+            </span>
+            Data & Cloud
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag" data-level="expert">AWS</span>
+            <span class="skill-tag" data-level="advanced">GCP</span>
+            <span class="skill-tag" data-level="advanced">Docker</span>
+            <span class="skill-tag" data-level="advanced">Kubernetes</span>
+            <span class="skill-tag" data-level="advanced">Spark</span>
+            <span class="skill-tag" data-level="intermediate">Airflow</span>
+          </div>
+        </div>
+
+        <!-- Tools & Practices -->
+        <div class="skill-category fade-in fade-in-delay-3">
+          <h3 class="category-title">
+            <span class="category-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                </path>
+              </svg>
+            </span>
+            Tools & Practices
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag" data-level="expert">Git</span>
+            <span class="skill-tag" data-level="advanced">MLflow</span>
+            <span class="skill-tag" data-level="advanced">Weights & Biases</span>
+            <span class="skill-tag" data-level="advanced">Jupyter</span>
+            <span class="skill-tag" data-level="intermediate">CI/CD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proficiency Levels -->
+      <div class="skill-bars-container fade-in">
+        <div class="skill-bar" data-skill="Python" data-level="90">
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill"></div>
+          </div>
+        </div>
+        <div class="skill-bar" data-skill="Machine Learning" data-level="80">
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill"></div>
+          </div>
+        </div>
+        <div class="skill-bar" data-skill="Deep Learning" data-level="75">
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill"></div>
+          </div>
+        </div>
+        <div class="skill-bar" data-skill="Data Engineering" data-level="80">
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill"></div>
+          </div>
+        </div>
+        <div class="skill-bar" data-skill="Cloud/MLOps" data-level="80">
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <h2 class="section-title fade-in">Featured <span>Projects</span></h2>
+      <p class="section-subtitle fade-in">
+        A selection of my recent work in Machine Learning and Data Science
+      </p>
+
+      <!-- Project Filters -->
+      <div class="project-filters fade-in">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="ml nlp">Machine Learning</button>
+        <button class="filter-btn" data-filter="quantitative modeling">Quantitative Modeling</button>
+
+      </div>
+      <!-- Projects Grid -->
+      <div class="projects-grid">
+        <!-- Project Card 1 -->
+        <article class="project-card fade-in" data-category="ml nlp">
+          <div class="project-image">
+            <img src="Assets/images/projects/Artboard 1.svg" alt="HYPERION" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="https://github.com/Michael-Gurule/hyperion" class="project-link" aria-label="View on GitHub"
+                  target="_blank" rel="noopener">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">PyTorch</span>
+              <span class="tag">GNN</span>
+              <span class="tag">Sensor Fusion</span>
+              <span class="tag">Docker</span>
+            </div>
+            <h3 class="project-title">Multi-Agent Reinforcement Learning platform</h3>
+            <p class="project-description">
+              HYPERION is a sophisticated machine learning platform designed to simulate and optimize autonomous drone
+              swarms for the detection, tracking, and interception of hypersonic threats in aerospace and defense (A&D)
+              scenarios.
+            </p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-value">1-100 Agents</span>
+                <span class="metric-label">Scalable</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">50ms</span>
+                <span class="metric-label">Latency</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">5M+</span>
+                <span class="metric-label">Time Steps</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 2 -->
+        <article class="project-card fade-in fade-in-delay-1" data-category="ml nlp">
+          <div class="project-image">
+            <img src="Assets/images/projects/Artboard 2.svg" alt="SENTINEL" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="https://github.com/Michael-Gurule/sentinel" class="project-link" aria-label="View on GitHub"
+                  target="_blank" rel="noopener">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">Convolutional Neural Networks</span>
+              <span class="tag">Multi-Sensor Fusion</span>
+              <span class="tag">TDOA/FDOA</span>
+              <span class="tag">Kalman Filter</span>
+            </div>
+            <h3 class="project-title">Multi-Sensor Fusion system</h3>
+            <p class="project-description">
+              SENTINEL is an advanced multi-intelligence fusion ML system designed for Aerospace & Defense applications,
+              combining Overhead Persistent Infrared (OPIR) thermal detection with Radio Frequency (RF) geolocation for
+              real-time threat detection and tracking.
+            </p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-value">90%</span>
+                <span class="metric-label">Detection Rate</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">30fps</span>
+                <span class="metric-label">Processing</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 3 -->
+        <article class="project-card fade-in fade-in-delay-2" data-category="quantitative modeling">
+          <div class="project-image">
+            <img src="Assets/images/projects/Artboard 3.svg" alt="MERIDIAN" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="https://github.com/Michael-Gurule/MERIDIAN" class="project-link" aria-label="View on GitHub"
+                  target="_blank" rel="noopener">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">Regime Detection</span>
+              <span class="tag">Covariance Estimation</span>
+              <span class="tag">GARCH (1,1)</span>
+              <span class="tag">Return Forecasting</span>
+            </div>
+            <h3 class="project-title">Multi-Asset Portfolio optimization</h3>
+            <p class="project-description">
+              MERIDIAN is a comprehensive investment portfolio optimization system combining multi-source market data
+              acquisition, regime-conditional optimization, realistic transaction cost modeling, and an interactive
+              decision support dashboard.
+            </p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-value">10yrs</span>
+                <span class="metric-label">Asset Data</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">25+</span>
+                <span class="metric-label">Assets</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="projects-cta fade-in">
+        <a href="https://github.com/michael-gurule" class="btn btn-secondary" target="_blank" rel="noopener">
+          View All Projects on GitHub
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="section blog" id="blog">
+    <div class="container">
+      <h2 class="section-title fade-in">Latest <span>Articles</span></h2>
+      <p class="section-subtitle fade-in">
+        Thoughts on machine learning, data science, and technology
+      </p>
+
+      <div class="blog-grid">
+        <!-- Blog Card 1 -->
+        <article class="blog-card fade-in">
+          <div class="blog-image">
+            <img src="Assets/images/blog/Sensory Fusion.webp" alt="Multi-Sensor Fusion" loading="lazy">
+            <span class="blog-category">Machine Learning</span>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <time datetime="2025-12-15">Dec 15, 2025</time>
+              <span class="blog-read-time">11 min read</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="#">
+                Multi-Sensor Fusion for Defense Applications
+              </a>
+            </h3>
+            <p class="blog-excerpt">
+              How Combining Intelligence Sources Creates Superior Situational Awareness
+              A technical deep-dive into sensor fusion algorithms, geolocation techniques, and multi-target tracking for
+              modern ISR systems
+            </p>
+            <a href="#" class="blog-link">
+              Read More
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Blog Card 2 - External Link -->
+        <article class="blog-card fade-in fade-in-delay-1">
+          <div class="blog-image">
+            <img src="Assets/images/blog/Natural Disaster.webp" alt="Natural Disaster Risk Assessment" loading="lazy">
+            <span class="blog-category">Risk Modeling</span>
+            <span class="external-badge">Medium</span>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <time datetime="2025-01-08">Jan 8, 2025</time>
+              <span class="blog-read-time">8 min read</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="https://medium.com" target="_blank" rel="noopener">
+                Predicting the Unpredictable: Machine Learning for Natural Disaster Risk Evaluation
+              </a>
+            </h3>
+            <p class="blog-excerpt">
+              Turning Government Data Streams into Actionable Intelligence.
+            </p>
+            <a href="https://medium.com" target="_blank" rel="noopener" class="blog-link">
+              Read on Medium
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Blog Card 3 -->
+        <article class="blog-card fade-in fade-in-delay-2">
+          <div class="blog-image">
+            <img src="Assets/images/blog/Fraud Detection.jpg" alt="Fraud Detection with ML" loading="lazy">
+            <span class="blog-category">Machine Learning</span>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <time datetime="2025-11-02">Nov 2, 2025</time>
+              <span class="blog-read-time">10 min read</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="#">
+                From Business Problem to Deployed API: Building a Fraud Detection System
+              </a>
+            </h3>
+            <p class="blog-excerpt">
+              Why Most ML Projects Fail in Production (And How to Build One That Won’t)
+            </p>
+            <a href="#" class="blog-link">
+              Read More
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="blog-cta fade-in">
+        <a href="#" class="btn btn-secondary">
+          View All Articles
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <h2 class="section-title fade-in">Get In <span>Touch</span></h2>
+      <p class="section-subtitle fade-in">
+        Interested in collaboration or have a project in mind? Let's talk.
+      </p>
+
+      <div class="contact-content">
+        <!-- Contact Form -->
+        <form class="contact-form fade-in fade-in-delay-1" action="https://formspree.io/f/mvzgeoyz" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email"
+              placeholder="your.email@example.com">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required placeholder="What's this about?">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" x2="11" y1="2" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span>&lt;</span>Michael Gurule<span>/&gt;</span>
+        </div>
+        <p class="footer-tagline">
+          Building intelligent systems, one model at a time.
+        </p>
+        <div class="footer-links">
+          <a href="https://github.com/michael-gurule" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/michael-j-gurule" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://medium.com/@michaelgurule" target="_blank" rel="noopener">Medium</a>
+        </div>
+        <p class="footer-copyright">
+          &copy; 2026 Michael Gurule. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

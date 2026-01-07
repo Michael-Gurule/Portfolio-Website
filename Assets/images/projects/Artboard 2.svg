@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 2.14px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+        stroke: #415a77;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke-width: 1.78px;
+      }
+
+      .cls-3 {
+        stroke-width: 1.55px;
+      }
+
+      .cls-6 {
+        fill: #c7c7c7;
+      }
+
+      .cls-7 {
+        fill: #415a77;
+        font-family: JetBrainsMono-Bold, 'JetBrains Mono';
+        font-size: 65.14px;
+        font-weight: 700;
+      }
+
+      .cls-4 {
+        stroke-width: 2.85px;
+      }
+
+      .cls-5 {
+        stroke-width: 2.5px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-6" x="1.32" y="1.95" width="598.65" height="397.3"/>
+  <g>
+    <path class="cls-4" d="M89.55,160.05c-17.61,19.75-17.11,49.42,1.12,66.34"/>
+    <path class="cls-5" d="M95.37,165.52c-14.48,16.24-14.07,40.64.92,54.56"/>
+    <path class="cls-1" d="M101.33,170.99c-11.32,12.69-11,31.76.72,42.64"/>
+    <path class="cls-2" d="M107.28,176.48c-8.15,9.14-7.92,22.87.52,30.7"/>
+    <path class="cls-3" d="M112.41,181.2c-5.42,6.08-5.27,15.21.35,20.41"/>
+  </g>
+  <text class="cls-7" transform="translate(110.41 225.86) scale(.98 1)"><tspan x="0" y="0">SENTINEL-XF</tspan></text>
+</svg>

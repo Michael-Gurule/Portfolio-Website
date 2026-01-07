@@ -1,0 +1,70 @@
+# .gitignore for Portfolio Website / michaelgurule.com
+
+# — MAC OS generated files ---
+.DS_Store
+__MACOSX/
+.AppleDouble
+.LSOverride
+Icon[]
+Thumbs.db
+
+
+# --- Python / Environment ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg
+*.egg-info/
+.eggs/
+venv/
+env/
+.venv
+.evn
+pip-log.txt
+pip-delete-this-directory.txt
+set.cfg
+
+# --- Notebooks ---
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# -- Data --
+#docs/*         #Project Dependent
+#!docs/wiki*	#Project Dependent
+*.csv
+*.json
+*.xlsx
+*.parquet
+*.sql
+*.sqlite
+
+# -- Models & Heavy Binaries ---
+*.pkl
+*.joblib
+*.h5
+*.pb
+*.onnx
+*.weights
+
+# Distribution / packaging
+build/
+dist/
+out/
+target/
+bin/
+obj/
+
+# --- VSCode ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!*.code-workspace
+
+
+# Misc
+*.log
+*.sqlite3
+*.db
