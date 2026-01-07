@@ -638,6 +638,13 @@ code, pre {
 .highlight-icon {
   font-size: var(--fs-2xl);
   line-height: 1;
+  flex-shrink: 0;
+}
+
+.highlight-icon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--color-accent);
 }
 
 .highlight-text h4 {
