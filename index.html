@@ -35,9 +35,8 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Favicon (Data/Chart Icon) -->
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23061E29' width='100' height='100' rx='20'/%3E%3Cpath fill='%235F9598' d='M20 70 L20 45 L35 45 L35 70 Z M40 70 L40 30 L55 30 L55 70 Z M60 70 L60 50 L75 50 L75 70 Z'/%3E%3Ccircle fill='%235F9598' cx='75' cy='35' r='8'/%3E%3C/svg%3E">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Assets/images/profile/mg_100x100.png">
 
   <!-- Structured Data for SEO -->
   <script type="application/ld+json">
@@ -60,13 +59,13 @@
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
       <a href="#" class="nav-logo" aria-label="Home">
-        <span class="logo-bracket">&lt;</span>Michael Gurule<span class="logo-bracket">/&gt;</span>
+        <img src="Assets/images/profile/WordMark.png" alt="Michael Gurule" class="nav-logo-img">
       </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#blog">Blog</a></li>
+        <li><a href="#articles">Articles</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -82,7 +81,7 @@
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
-    <a href="#blog">Blog</a>
+    <a href="#articles">Articles</a>
     <a href="#contact">Contact</a>
   </div>
 
@@ -122,7 +121,8 @@
           <span class="stat-label">Years Experience</span>
         </div>
         <div class="stat-item">
-          <span class="stat-value" data-target="10">0</span><span class="stat-suffix">M+</span>
+          <span class="stat-prefix">$</span> <span class="stat-value" data-target="10">0</span><span
+            class="stat-suffix">M+</span>
           <span class="stat-label">Business Impact</span>
         </div>
       </div>
@@ -161,7 +161,7 @@
       <div class="about-content">
         <div class="about-image fade-in">
           <div class="image-frame">
-            <!-- Replace with your photo -->
+
 
 
 
@@ -185,65 +185,66 @@
           </p>
           <p>
             Currently, I am expanding my technical depth through an MS in Data Science at the University of Colorado
-            while building intelligence systems across high-stakes domains. This work includes aerospace defense
+            while building intelligence systems across high-stakes domains. This work includes Machine Learning
             applications, financial optimization, and multi-sensor platforms. My focus remains on deployment-grade work
             where technical depth is matched with the rigor required for real-world application.
           </p>
           <p>
-            <strong>Based in Denver | Open to Remote | Focused on Defense, Finance, and Emerging Tech</strong>
+            <strong>Based in Denver | Open to Remote </strong>
           </p>
-          <div class="about-highlights">
-            <div class="highlight-item">
-              <div class="highlight-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2a4 4 0 0 0-4 4c0 1.5.8 2.8 2 3.4V12h4V9.4c1.2-.6 2-1.9 2-3.4a4 4 0 0 0-4-4z"></path>
-                  <path d="M8 14h8"></path>
-                  <path d="M8 18h8"></path>
-                  <path d="M10 22h4"></path>
-                </svg>
-              </div>
-              <div class="highlight-text">
-                <h4>ML & AI</h4>
-                <p> Deep Learning, Time-Series Forecasting, NLP, Feature Engineering, Reinforcement Learning,
-                  Physics-Informed Neural Networks, Optimization Algorithms, Bayesian Inference, Uncertainty
-                  Quantification, SciML, Explainable AI
-                </p>
-              </div>
+        </div>
+        <div class="about-highlights fade-in">
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a4 4 0 0 0-4 4c0 1.5.8 2.8 2 3.4V12h4V9.4c1.2-.6 2-1.9 2-3.4a4 4 0 0 0-4-4z"></path>
+                <path d="M8 14h8"></path>
+                <path d="M8 18h8"></path>
+                <path d="M10 22h4"></path>
+              </svg>
             </div>
-            <div class="highlight-item">
-              <div class="highlight-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 3v18h18"></path>
-                  <path d="m19 9-5 5-4-4-3 3"></path>
-                </svg>
-              </div>
-              <div class="highlight-text">
-                <h4>Data Eng & MLOps</h4>
-                <p>
-                  AWS, Containerization, CI/CD, ETL Pipelines, RESTful API Design, Version Control, Monitoring &
-                  Infrastructure as Code, Vector Databases, Model Quantization & Optimization
-                </p>
-              </div>
+            <div class="highlight-text">
+              <h4>ML & AI</h4>
+              <p> Neural Networks (CNN, LSTM, Transformers), Time-Series Forecasting, Feature Engineering, Anomaly
+                Detection, Reinforcement Learning,
+                Optimization Algorithms, Bayesian Inference, Explainable AI
+              </p>
             </div>
-            <div class="highlight-item">
-              <div class="highlight-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path
-                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
-                  </path>
-                </svg>
-              </div>
-              <div class="highlight-text">
-                <h4>AS&R</h4>
-                <p>
-                  Convex Optimization, Signal Processing, Graph Neural Networks, Sensor Fusion,
-                  Geospatial Analytics, Multi-Agent Systems, Adversarial Robustness, Digital Twins
-                </p>
-              </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"></path>
+                <path d="m19 9-5 5-4-4-3 3"></path>
+              </svg>
+            </div>
+            <div class="highlight-text">
+              <h4>Data Eng & MLOps</h4>
+              <p>
+                AWS, Containerization, CI/CD, ETL Pipelines, RESTful API Design, Version Control,
+                Monitoring, Distributed Computing Database Design, Stream Processing, Model Quantization &
+                Optimization
+              </p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+              </svg>
+            </div>
+            <div class="highlight-text">
+              <h4>Advanced Methods</h4>
+              <p>
+                Convex Optimization, Signal Processing, Graph Neural Networks, Sensor Fusion,
+                Geospatial Analytics, Multi-Agent Systems, Adversarial Robustness, Digital Twins
+              </p>
             </div>
           </div>
         </div>
@@ -271,7 +272,7 @@
         <div class="skill-category fade-in fade-in-delay-1">
           <h3 class="category-title">
             <span class="category-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2a4 4 0 0 0-4 4c0 1.5.8 2.8 2 3.4V12h4V9.4c1.2-.6 2-1.9 2-3.4a4 4 0 0 0-4-4z"></path>
                 <path d="M8 14h8"></path>
@@ -279,20 +280,19 @@
                 <path d="M10 22h4"></path>
               </svg>
             </span>
-            ML/AI Tech Stack
+            Machine Learning & AI
           </h3>
           <div class="skill-tags">
+            <span class="skill-tag" data-level="advanced">Numpy/SciPy</span>
             <span class="skill-tag" data-level="advanced">PyTorch</span>
-            <span class="skill-tag" data-level="advanced">Torch-Geometric</span>
             <span class="skill-tag" data-level="advanced">TensorFlow</span>
-            <span class="skill-tag" data-level="advanced">JAX</span>
+            <span class="skill-tag" data-level="advanced">XGBoost</span>
             <span class="skill-tag" data-level="advanced">Scikit-learn</span>
             <span class="skill-tag" data-level="advanced">Statsmodels</span>
-            <span class="skill-tag" data-level="advanced">Stable Baselines3</span>
-            <span class="skill-tag" data-level="advanced">PyMC</span>
-            <span class="skill-tag" data-level="advanced">CVXPY</span>
-            <span class="skill-tag" data-level="advanced">Weights & Biases</span>
-            <span class="skill-tag" data-level="advanced">SciPy</span>
+            <span class="skill-tag" data-level="advanced">Hugging Face</span>
+            <span class="skill-tag" data-level="advanced">Keras</span>
+            <span class="skill-tag" data-level="advanced">FastAPI / Streamlite</span>
+            <span class="skill-tag" data-level="advanced">OpenCV</span>
           </div>
         </div>
 
@@ -305,23 +305,18 @@
                 <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
               </svg>
             </span>
-            Data Engineering & MLOps Tech Stack
+            Data Engineering & MLOps
           </h3>
           <div class="skill-tags">
-            <span class="skill-tag" data-level="advanced">AWS</span>
-            <span class="skill-tag" data-level="advanced">Terraform</span>
-            <span class="skill-tag" data-level="advanced">MLflow</span>
-            <span class="skill-tag" data-level="advanced">Docker</span>
-            <span class="skill-tag" data-level="advanced">Kubernetes</span>
-            <span class="skill-tag" data-level="advanced">Spark</span>
-            <span class="skill-tag" data-level="advanced">PostgreSQL</span>
-            <span class="skill-tag" data-level="advanced">Milvus</span>
+            <span class="skill-tag" data-level="advanced">AWS/GCP</span>
+            <span class="skill-tag" data-level="advanced">MLflow / Weights & Biases</span>
+            <span class="skill-tag" data-level="advanced">Docker / Kubernetes</span>
+            <span class="skill-tag" data-level="advanced">Apache Airflow / Prefect</span>
+            <span class="skill-tag" data-level="advanced">Apache Kafka</span>
+            <span class="skill-tag" data-level="advanced">Databricks</span>
+            <span class="skill-tag" data-level="advanced">PostgreSQL / TimescaleDB</span>
             <span class="skill-tag" data-level="advanced">DVC</span>
-            <span class="skill-tag" data-level="advanced">Snowflake</span>
-            <span class="skill-tag" data-level="advanced">FastAPI</span>
-            <span class="skill-tag" data-level="advanced">Pydantic</span>
-            <span class="skill-tag" data-level="advanced">Kafka</span>
-            <span class="skill-tag" data-level="advanced">gRPC</span>
+            <span class="skill-tag" data-level="advanced">Git/Github Actions</span>
           </div>
         </div>
 
@@ -336,49 +331,27 @@
                 </path>
               </svg>
             </span>
-            Advanced Systems & Research Tech Stack
+            Advanced Systems & Research
           </h3>
           <div class="skill-tags">
             <span class="skill-tag" data-level="advanced">PettingZoo</span>
             <span class="skill-tag" data-level="advanced">Supersuit</span>
             <span class="skill-tag" data-level="advanced">RLlib</span>
+            <span class="skill-tag" data-level="advanced">PyTorch Geometric</span>
             <span class="skill-tag" data-level="advanced">GeoPandas</span>
+            <span class="skill-tag" data-level="advanced">CVXPY (convex optimization)</span>
             <span class="skill-tag" data-level="advanced">FilterPy</span>
             <span class="skill-tag" data-level="advanced">ONNX Runtime</span>
             <span class="skill-tag" data-level="advanced">TensorRT</span>
-            <span class="skill-tag" data-level="advanced">Numba</span>
+            <span class="skill-tag" data-level="advanced">Folium</span>
           </div>
         </div>
       </div>
 
-      <!-- Proficiency Levels -->
-      <div class="skill-bars-container fade-in">
-        <div class="skill-bar" data-skill="Python" data-level="90">
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill"></div>
-          </div>
-        </div>
-        <div class="skill-bar" data-skill="Machine Learning" data-level="90">
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill"></div>
-          </div>
-        </div>
-        <div class="skill-bar" data-skill="Deep Learning" data-level="70">
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill"></div>
-          </div>
-        </div>
-        <div class="skill-bar" data-skill="Data Engineering" data-level="85">
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill"></div>
-          </div>
-        </div>
-        <div class="skill-bar" data-skill="Cloud/MLOps" data-level="90">
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill"></div>
-          </div>
-        </div>
-      </div>
+      <blockquote class="skills-quote fade-in">
+        <p>"It's not that I'm so smart, it's just that I stay with problems longer."</p>
+        <cite>— Albert Einstein</cite>
+      </blockquote>
     </div>
   </section>
 
@@ -390,13 +363,6 @@
         A selection of my recent work in Machine Learning and Data Science
       </p>
 
-      <!-- Project Filters -->
-      <div class="project-filters fade-in">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="ml nlp">Machine Learning</button>
-        <button class="filter-btn" data-filter="quantitative modeling">Quantitative Modeling</button>
-
-      </div>
       <!-- Projects Grid -->
       <div class="projects-grid">
         <!-- Project Card 1 -->
@@ -419,12 +385,11 @@
           </div>
           <div class="project-content">
             <div class="project-tags">
-              <span class="tag">PyTorch</span>
-              <span class="tag">GNN</span>
-              <span class="tag">Sensor Fusion</span>
-              <span class="tag">Docker</span>
+              <span class="tag">Physics Informed Neural Networks</span>
+              <span class="tag">Multi-Sensor Fusion</span>
+              <span class="tag">Real-Time Systems</span>
             </div>
-            <h3 class="project-title">Multi-Agent Reinforcement Learning platform</h3>
+            <h3 class="project-title">Multi-Agent Reinforcement Learning</h3>
             <p class="project-description">
               HYPERION is a sophisticated machine learning platform designed to simulate and optimize autonomous drone
               swarms for the detection, tracking, and interception of hypersonic threats in aerospace and defense (A&D)
@@ -432,7 +397,7 @@
             </p>
             <div class="project-metrics">
               <div class="metric">
-                <span class="metric-value">1-100 Agents</span>
+                <span class="metric-value">1-50 Agents</span>
                 <span class="metric-label">Scalable</span>
               </div>
               <div class="metric">
@@ -472,7 +437,7 @@
               <span class="tag">TDOA/FDOA</span>
               <span class="tag">Kalman Filter</span>
             </div>
-            <h3 class="project-title">Multi-Sensor Fusion system</h3>
+            <h3 class="project-title">Multi-Sensor Fusion</h3>
             <p class="project-description">
               SENTINEL is an advanced multi-intelligence fusion ML system designed for Aerospace & Defense applications,
               combining Overhead Persistent Infrared (OPIR) thermal detection with Radio Frequency (RF) geolocation for
@@ -516,7 +481,7 @@
               <span class="tag">GARCH (1,1)</span>
               <span class="tag">Return Forecasting</span>
             </div>
-            <h3 class="project-title">Multi-Asset Portfolio optimization</h3>
+            <h3 class="project-title">Multi-Asset Portfolio Optimization</h3>
             <p class="project-description">
               MERIDIAN is a comprehensive investment portfolio optimization system combining multi-source market data
               acquisition, regime-conditional optimization, realistic transaction cost modeling, and an interactive
@@ -561,30 +526,32 @@
         <!-- Blog Card 1 -->
         <article class="blog-card fade-in">
           <div class="blog-image">
-            <img src="Assets/images/blog/Sensory Fusion.webp" alt="Multi-Sensor Fusion" loading="lazy">
-            <span class="blog-category">Machine Learning</span>
+            <img src="Assets/images/blog/Beauty of math.webp" alt="The Beautiful Mathematics Behind Machine Learning"
+              loading="lazy">
           </div>
           <div class="blog-content">
             <div class="blog-meta">
-              <time datetime="2025-12-15">Dec 15, 2025</time>
-              <span class="blog-read-time">11 min read</span>
+              <time datetime="2026-02-08">Feb 8th, 2026</time>
+              <span class="blog-read-time">12 min read</span>
             </div>
             <h3 class="blog-title">
-              <a href="#">
-                Multi-Sensor Fusion for Defense Applications
+              The Beautiful Mathematics Behind Machine Learning
               </a>
             </h3>
             <p class="blog-excerpt">
-              How Combining Intelligence Sources Creates Superior Situational Awareness
-              A technical deep-dive into sensor fusion algorithms, geolocation techniques, and multi-target tracking for
-              modern ISR systems
+              Here’s a secret about artificial intelligence: it’s not magic, and it’s not actually all that
+              mysterious.
+              At its heart, AI runs on mathematics that mathematicians and statisticians worked out hundreds of years
+              ago.
             </p>
-            <a href="#" class="blog-link">
-              Read More
+            <a href="https://medium.com/@michaelgurule1164/the-beautiful-mathematics-behind-machine-learning-b4358217b236"
+              target="_blank" rel="noopener" class="blog-link">
+              Read on Medium
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
               </svg>
             </a>
           </div>
@@ -593,24 +560,23 @@
         <!-- Blog Card 2 - External Link -->
         <article class="blog-card fade-in fade-in-delay-1">
           <div class="blog-image">
-            <img src="Assets/images/blog/Natural Disaster.webp" alt="Natural Disaster Risk Assessment" loading="lazy">
-            <span class="blog-category">Risk Modeling</span>
-            <span class="external-badge">Medium</span>
+            <img src="Assets/images/blog/Outlier.webp" alt="When the Outlier is the Signal" loading="lazy">
           </div>
           <div class="blog-content">
             <div class="blog-meta">
-              <time datetime="2025-01-08">Jan 8, 2025</time>
+              <time datetime="2025-01-08">Jan 21st, 2025</time>
               <span class="blog-read-time">8 min read</span>
             </div>
             <h3 class="blog-title">
-              <a href="https://medium.com" target="_blank" rel="noopener">
-                Predicting the Unpredictable: Machine Learning for Natural Disaster Risk Evaluation
+              When the Outlier is the Signal:
+              Reimagining Anomaly Detection for High-Stakes Engineering.
               </a>
             </h3>
             <p class="blog-excerpt">
-              Turning Government Data Streams into Actionable Intelligence.
+              Stop "cleaning" your outliers. You might be deleting the most important data you have.
             </p>
-            <a href="https://medium.com" target="_blank" rel="noopener" class="blog-link">
+            <a href="https://medium.com/@michaelgurule1164/when-the-outlier-is-the-signal-reimagining-anomaly-detection-for-high-stakes-engineering-92f8ee6c69ca"
+              target="_blank" rel="noopener" class="blog-link">
               Read on Medium
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
@@ -625,28 +591,30 @@
         <!-- Blog Card 3 -->
         <article class="blog-card fade-in fade-in-delay-2">
           <div class="blog-image">
-            <img src="Assets/images/blog/Fraud Detection.jpg" alt="Fraud Detection with ML" loading="lazy">
-            <span class="blog-category">Machine Learning</span>
+            <img src="Assets/images/blog/AI_Strategy.webp" alt="Your AI Strategy Is Backwards" loading="lazy">
           </div>
           <div class="blog-content">
             <div class="blog-meta">
-              <time datetime="2025-11-02">Nov 2, 2025</time>
+              <time datetime="2025-11-02">Nov 2nd, 2025</time>
               <span class="blog-read-time">10 min read</span>
             </div>
             <h3 class="blog-title">
-              <a href="#">
-                From Business Problem to Deployed API: Building a Fraud Detection System
+              Your AI Strategy Is Backwards
+              (And Why That’s Costing You Trust)
               </a>
             </h3>
             <p class="blog-excerpt">
-              Why Most ML Projects Fail in Production (And How to Build One That Won’t)
+              The problem isn’t the AI. The problem is that nobody stopped to ask whether the process was worth
+              automating in the first place.
             </p>
-            <a href="#" class="blog-link">
-              Read More
+            <a href="https://medium.com/@michaelgurule1164/your-ai-strategy-is-backwards-and-why-thats-costing-you-trust-79bded3542a9"
+              target="_blank" rel="noopener" class="blog-link">
+              Read on Medium
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
               </svg>
             </a>
           </div>
@@ -712,7 +680,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <span>&lt;</span>Michael Gurule<span>/&gt;</span>
+          <img src="Assets/images/profile/WordMark.png" alt="Michael Gurule" class="footer-logo-img">
         </div>
         <p class="footer-tagline">
           Building intelligent systems, one model at a time.
