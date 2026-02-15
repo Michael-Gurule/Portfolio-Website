@@ -30,6 +30,12 @@
   --gradient-accent: linear-gradient(135deg, #5F9598 0%, #7ab0b3 100%);
   --gradient-text: linear-gradient(135deg, #5F9598 0%, #F3F4F4 50%, #5F9598 100%);
 
+  /* Atmospheric Gradients */
+  --gradient-hero-bg: radial-gradient(ellipse 120% 80% at 50% 60%, #0d3a4f 0%, #082030 35%, #061E29 65%, #030f18 100%);
+  --gradient-hero-glow: radial-gradient(ellipse 60% 50% at 50% 55%, rgba(95, 149, 152, 0.18) 0%, rgba(29, 84, 109, 0.12) 40%, transparent 70%);
+  --gradient-section-alt: linear-gradient(180deg, #061E29 0%, #082030 50%, #0a2a38 100%);
+  --gradient-section-subtle: linear-gradient(180deg, #0a2a38 0%, #061E29 100%);
+
   /* Glow Effects - Disabled for clean lab aesthetic */
   --glow-accent: none;
   --glow-intense: none;
@@ -98,6 +104,50 @@
 /* ========================================
    2. CSS RESET & BASE
    ======================================== */
+
+/* ========================================
+   INTRO SPLASH
+   ======================================== */
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #030f18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease;
+}
+
+.intro-splash.fade-out {
+  opacity: 0;
+}
+
+.intro-logo {
+  height: clamp(40px, 8vw, 80px);
+  width: auto;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: introLogoReveal 0.7s ease 0.3s forwards;
+}
+
+@keyframes introLogoReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dot Grid Canvas */
+#dot-grid-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
 *,
 *::before,
 *::after {
@@ -228,6 +278,7 @@ pre {
 .section {
   padding: var(--section-padding) 0;
   position: relative;
+  z-index: 1;
 }
 
 .section-title {
@@ -411,6 +462,7 @@ pre {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: var(--gradient-hero-bg);
 }
 
 .hero-canvas {
@@ -419,7 +471,7 @@ pre {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: var(--z-below);
+  z-index: var(--z-base);
 }
 
 .hero-overlay {
@@ -428,14 +480,18 @@ pre {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg-primary) 70%);
-  z-index: var(--z-base);
+  background:
+    var(--gradient-hero-glow),
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(6, 30, 41, 0.9) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 30% at 0% 50%, rgba(3, 15, 24, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 30% at 100% 50%, rgba(3, 15, 24, 0.6) 0%, transparent 50%);
+  z-index: var(--z-above);
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: var(--z-above);
+  z-index: 2;
   text-align: left;
   padding: var(--space-xl);
   max-width: 800px;
@@ -707,7 +763,21 @@ pre {
    8. SKILLS SECTION
    ======================================== */
 .skills {
-  background: var(--color-bg-secondary);
+  background: var(--gradient-section-alt);
+  position: relative;
+}
+
+.skills::before,
+.blog::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(95, 149, 152, 0.3), transparent);
+  pointer-events: none;
 }
 
 /* Hide radar chart - cleaner lab aesthetic */
@@ -1031,7 +1101,8 @@ pre {
    10. BLOG SECTION
    ======================================== */
 .blog {
-  background: var(--color-bg-secondary);
+  background: var(--gradient-section-alt);
+  position: relative;
 }
 
 .blog-grid {
@@ -1160,9 +1231,18 @@ pre {
 /* ========================================
    11. CONTACT SECTION
    ======================================== */
+.contact .section-title,
+.contact .section-subtitle {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .contact-content {
   display: grid;
   gap: var(--space-3xl);
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .contact-info {
@@ -1250,10 +1330,15 @@ pre {
 
 /* Contact Form */
 .contact-form {
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
+  background: rgba(13, 42, 58, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(95, 149, 152, 0.18);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(95, 149, 152, 0.12) inset;
 }
 
 .form-group {
@@ -1300,9 +1385,11 @@ pre {
    12. FOOTER
    ======================================== */
 .footer {
-  background: var(--color-bg-secondary);
+  background: var(--gradient-section-subtle);
   border-top: 1px solid var(--color-border-light);
   padding: var(--space-3xl) 0;
+  position: relative;
+  z-index: 1;
 }
 
 .footer-content {
@@ -1410,32 +1497,59 @@ pre {
    14. UTILITIES & ANIMATIONS
    ======================================== */
 
-/* Fade In Animation */
+/* ----------------------------------------
+   Scroll Reveal System
+   ---------------------------------------- */
+
+/* Base state — all reveal elements start hidden */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Default: slide up */
+.fade-in,
+.fade-in[data-reveal="up"] {
+  transform: translateY(32px);
+}
+
+.fade-in[data-reveal="left"] {
+  transform: translateX(-40px);
+}
+
+.fade-in[data-reveal="right"] {
+  transform: translateX(40px);
+}
+
+.fade-in[data-reveal="scale"] {
+  transform: translateY(20px) scale(0.97);
+}
+
+/* Visible state */
 .fade-in.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
-.fade-in-delay-1 {
-  transition-delay: 0.1s;
+/* Stagger delays */
+.fade-in-delay-1 { transition-delay: 0.08s; }
+.fade-in-delay-2 { transition-delay: 0.16s; }
+.fade-in-delay-3 { transition-delay: 0.24s; }
+.fade-in-delay-4 { transition-delay: 0.32s; }
+.fade-in-delay-5 { transition-delay: 0.40s; }
+
+/* Hero entrance — fires after splash clears */
+.hero-content {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
 }
 
-.fade-in-delay-2 {
-  transition-delay: 0.2s;
-}
-
-.fade-in-delay-3 {
-  transition-delay: 0.3s;
-}
-
-.fade-in-delay-4 {
-  transition-delay: 0.4s;
+.hero-content.hero-visible {
+  opacity: 1;
+  transform: none;
 }
 
 /* Reduced Motion */
@@ -1538,9 +1652,6 @@ pre {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .contact-content {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 /* Laptop - 1024px */

@@ -4,28 +4,31 @@
  */
 
 // ========================================
-// PARTICLE SYSTEM (Neural Network Effect)
+// NEURAL NETWORK HERO (Radiates from center)
 // ========================================
 class ParticleNetwork {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.particles = [];
-    this.mouse = { x: null, y: null, radius: 150 };
+    this.mouse = { x: null, y: null, radius: 180 };
     this.animationId = null;
     this.isVisible = true;
+    this.startTime = null;
+    this.burstReady = false; // waits for startBurst() call
 
-    // Configuration
+    // Intro burst: nodes travel from center to final positions over this duration
+    this.burstDuration = 2200; // ms
+
     this.config = {
-      particleCount: 80,
-      particleSize: { min: 1, max: 3 },
-      particleSpeed: 0.3,
-      connectionDistance: 150,
-      colors: {
-        particle: '#5F9598',
-        connection: 'rgba(95, 149, 152, 0.15)',
-        connectionHighlight: 'rgba(95, 149, 152, 0.4)'
-      }
+      particleCount: 90,
+      connectionDistance: 160,
+      drift: 0.18,          // gentle float speed after burst
+      nodeMinR: 1.2,
+      nodeMaxR: 3.0,
+      // Teal palette (RGB)
+      coreColor:  [122, 176, 179],  // bright teal — near center
+      edgeColor:  [ 29,  84, 109],  // deep navy — far from center
     };
 
     this.init();
@@ -35,26 +38,46 @@ class ParticleNetwork {
     this.resize();
     this.createParticles();
     this.bindEvents();
-    this.animate();
+    this.animationId = requestAnimationFrame((ts) => this.animate(ts));
   }
 
   resize() {
-    this.canvas.width = window.innerWidth;
+    this.canvas.width  = window.innerWidth;
     this.canvas.height = window.innerHeight;
   }
 
   createParticles() {
     this.particles = [];
-    const { particleCount, particleSize, particleSpeed } = this.config;
+    const cx = this.canvas.width  / 2;
+    const cy = this.canvas.height / 2;
+    const { particleCount, nodeMinR, nodeMaxR, drift } = this.config;
+
+    // Spread radius — fill most of the viewport
+    const maxR = Math.max(this.canvas.width, this.canvas.height) * 0.56;
 
     for (let i = 0; i < particleCount; i++) {
+      // Final resting position: random angle, bias toward mid-range radii
+      const angle  = Math.random() * Math.PI * 2;
+      const r      = maxR * (0.15 + Math.random() * 0.85);
+      const tx     = cx + Math.cos(angle) * r;
+      const ty     = cy + Math.sin(angle) * r;
+
+      // Normalised distance from center (0 = center, 1 = edge)
+      const normDist = r / maxR;
+
       this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        size: Math.random() * (particleSize.max - particleSize.min) + particleSize.min,
-        speedX: (Math.random() - 0.5) * particleSpeed,
-        speedY: (Math.random() - 0.5) * particleSpeed,
-        opacity: Math.random() * 0.5 + 0.5
+        // Current position starts at center
+        x: cx, y: cy,
+        // Target position
+        tx, ty,
+        size:   nodeMinR + Math.random() * (nodeMaxR - nodeMinR),
+        normDist,                    // for colour blending
+        // Continuous drift after burst settles
+        driftAngle: Math.random() * Math.PI * 2,
+        driftSpeed: (0.4 + Math.random() * 0.6) * drift,
+        driftRadius: 6 + Math.random() * 18,
+        // Store drift origin (set once burst is done)
+        ox: null, oy: null,
       });
     }
   }
@@ -63,6 +86,7 @@ class ParticleNetwork {
     window.addEventListener('resize', () => {
       this.resize();
       this.createParticles();
+      this.startTime = null; // restart burst on resize
     });
 
     this.canvas.addEventListener('mousemove', (e) => {
@@ -75,110 +99,278 @@ class ParticleNetwork {
       this.mouse.y = null;
     });
 
-    // Pause animation when tab is hidden
     document.addEventListener('visibilitychange', () => {
       this.isVisible = !document.hidden;
       if (this.isVisible) {
-        this.animate();
+        this.animationId = requestAnimationFrame((ts) => this.animate(ts));
       }
     });
   }
 
-  drawParticle(particle) {
-    this.ctx.beginPath();
-    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-    this.ctx.fillStyle = this.config.colors.particle;
-    this.ctx.globalAlpha = particle.opacity;
-    this.ctx.fill();
-    this.ctx.globalAlpha = 1;
+  // Ease-out expo for the burst
+  easeOutExpo(t) {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
   }
 
-  drawConnections() {
-    const { connectionDistance, colors } = this.config;
+  update(timestamp) {
+    if (!this.startTime) this.startTime = timestamp ?? performance.now();
+    const elapsed = (timestamp ?? this.startTime) - this.startTime;
+    const burstT  = Math.min(elapsed / this.burstDuration, 1);
+    const burstDone = burstT >= 1;
 
-    for (let i = 0; i < this.particles.length; i++) {
-      for (let j = i + 1; j < this.particles.length; j++) {
-        const dx = this.particles[i].x - this.particles[j].x;
-        const dy = this.particles[i].y - this.particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+    const cx = this.canvas.width  / 2;
+    const cy = this.canvas.height / 2;
 
-        if (distance < connectionDistance) {
-          const opacity = 1 - distance / connectionDistance;
-          this.ctx.beginPath();
-          this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-          this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-          this.ctx.strokeStyle = colors.connection;
-          this.ctx.globalAlpha = opacity * 0.5;
-          this.ctx.lineWidth = 1;
-          this.ctx.stroke();
-          this.ctx.globalAlpha = 1;
+    this.particles.forEach(p => {
+      if (!burstDone) {
+        // Stagger each node's departure slightly for organic feel
+        const delay    = p.normDist * 0.25;          // 0–0.25 normalised offset
+        const localT   = Math.max(0, (burstT - delay) / (1 - delay));
+        const eased    = this.easeOutExpo(Math.min(localT, 1));
+        p.x = cx + (p.tx - cx) * eased;
+        p.y = cy + (p.ty - cy) * eased;
+        if (eased >= 1 && p.ox === null) {
+          p.ox = p.tx; p.oy = p.ty;
+        }
+      } else {
+        // Settle origin on first fully-done frame
+        if (p.ox === null) { p.ox = p.tx; p.oy = p.ty; }
+
+        // Gentle continuous float
+        p.driftAngle += 0.004;
+        p.x = p.ox + Math.cos(p.driftAngle) * p.driftRadius * p.driftSpeed;
+        p.y = p.oy + Math.sin(p.driftAngle) * p.driftRadius * p.driftSpeed;
+
+        // Soft mouse repulsion
+        if (this.mouse.x !== null) {
+          const dx   = p.x - this.mouse.x;
+          const dy   = p.y - this.mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < this.mouse.radius) {
+            const force = (this.mouse.radius - dist) / this.mouse.radius;
+            p.x += dx * force * 0.025;
+            p.y += dy * force * 0.025;
+          }
         }
       }
+    });
 
-      // Mouse connections
-      if (this.mouse.x !== null && this.mouse.y !== null) {
-        const dx = this.particles[i].x - this.mouse.x;
-        const dy = this.particles[i].y - this.mouse.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+    return burstT; // used for fade-in of lines
+  }
 
-        if (distance < this.mouse.radius) {
-          const opacity = 1 - distance / this.mouse.radius;
-          this.ctx.beginPath();
-          this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-          this.ctx.lineTo(this.mouse.x, this.mouse.y);
-          this.ctx.strokeStyle = colors.connectionHighlight;
-          this.ctx.globalAlpha = opacity;
-          this.ctx.lineWidth = 1.5;
-          this.ctx.stroke();
-          this.ctx.globalAlpha = 1;
+  draw(burstT) {
+    const { ctx, canvas } = this;
+    const { connectionDistance, coreColor, edgeColor } = this.config;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Lines fade in during last 60% of burst
+    const lineAlpha = Math.min(1, Math.max(0, (burstT - 0.4) / 0.6));
+
+    // Draw connections
+    if (lineAlpha > 0) {
+      for (let i = 0; i < this.particles.length; i++) {
+        for (let j = i + 1; j < this.particles.length; j++) {
+          const pi = this.particles[i];
+          const pj = this.particles[j];
+          const dx   = pi.x - pj.x;
+          const dy   = pi.y - pj.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < connectionDistance) {
+            const proximity  = 1 - dist / connectionDistance;
+            const avgNorm    = (pi.normDist + pj.normDist) * 0.5;
+            const baseOpacity = 0.06 + proximity * 0.28;
+            const alpha       = baseOpacity * lineAlpha;
+
+            // Mouse highlight
+            let boost = 1;
+            if (this.mouse.x !== null) {
+              const midX = (pi.x + pj.x) * 0.5 - this.mouse.x;
+              const midY = (pi.y + pj.y) * 0.5 - this.mouse.y;
+              const mdist = Math.sqrt(midX * midX + midY * midY);
+              boost = mdist < this.mouse.radius
+                ? 1 + (1 - mdist / this.mouse.radius) * 2.5
+                : 1;
+            }
+
+            const [r, g, b] = blendToCenter(avgNorm);
+            ctx.beginPath();
+            ctx.moveTo(pi.x, pi.y);
+            ctx.lineTo(pj.x, pj.y);
+            ctx.strokeStyle = `rgba(${r},${g},${b},${Math.min(alpha * boost, 0.7)})`;
+            ctx.lineWidth = 0.8 + proximity * 0.5;
+            ctx.stroke();
+          }
         }
       }
     }
-  }
 
-  updateParticles() {
-    this.particles.forEach(particle => {
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
+    // Draw nodes
+    this.particles.forEach(p => {
+      const [r, g, b] = blendToCenter(p.normDist);
+      const nodeAlpha = (0.55 + (1 - p.normDist) * 0.45) * Math.max(lineAlpha, burstT * 1.5);
 
-      // Bounce off edges
-      if (particle.x < 0 || particle.x > this.canvas.width) {
-        particle.speedX *= -1;
+      // Mouse glow on nodes
+      let glowBoost = 1;
+      if (this.mouse.x !== null) {
+        const dx   = p.x - this.mouse.x;
+        const dy   = p.y - this.mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < this.mouse.radius) glowBoost = 1 + (1 - dist / this.mouse.radius) * 1.8;
       }
-      if (particle.y < 0 || particle.y > this.canvas.height) {
-        particle.speedY *= -1;
-      }
 
-      // Mouse interaction - gentle push
-      if (this.mouse.x !== null && this.mouse.y !== null) {
-        const dx = particle.x - this.mouse.x;
-        const dy = particle.y - this.mouse.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < this.mouse.radius) {
-          const force = (this.mouse.radius - distance) / this.mouse.radius;
-          particle.x += dx * force * 0.02;
-          particle.y += dy * force * 0.02;
-        }
-      }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * glowBoost, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${r},${g},${b},${Math.min(nodeAlpha, 1)})`;
+      ctx.fill();
     });
+
+    // Helper: blend core→edge colour based on normalised distance
+    function blendToCenter(norm) {
+      const t = Math.min(norm, 1);
+      return [
+        Math.round(coreColor[0] + (edgeColor[0] - coreColor[0]) * t),
+        Math.round(coreColor[1] + (edgeColor[1] - coreColor[1]) * t),
+        Math.round(coreColor[2] + (edgeColor[2] - coreColor[2]) * t),
+      ];
+    }
   }
 
-  animate() {
+  animate(timestamp) {
     if (!this.isVisible) return;
+    if (!this.burstReady) {
+      // Waiting for splash to clear — just keep the loop alive, draw nothing
+      this.animationId = requestAnimationFrame((ts) => this.animate(ts));
+      return;
+    }
+    const burstT = this.update(timestamp);
+    this.draw(burstT);
+    this.animationId = requestAnimationFrame((ts) => this.animate(ts));
+  }
 
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.drawConnections();
-    this.particles.forEach(particle => this.drawParticle(particle));
-    this.updateParticles();
-
-    this.animationId = requestAnimationFrame(() => this.animate());
+  // Call this to trigger the burst animation (fired when splash clears)
+  startBurst() {
+    this.burstReady = true;
+    this.startTime = null;
+    const cx = this.canvas.width / 2;
+    const cy = this.canvas.height / 2;
+    this.particles.forEach(p => {
+      p.x = cx; p.y = cy;
+      p.ox = null; p.oy = null;
+    });
   }
 
   destroy() {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
     }
+  }
+}
+
+// ========================================
+// DOT GRID BACKGROUND
+// ========================================
+class DotGrid {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.mouse = { x: -9999, y: -9999 };
+    this.target = { x: -9999, y: -9999 };
+    this.animationId = null;
+    this.isVisible = !document.hidden;
+
+    this.config = {
+      spacing: 32,
+      dotRadius: 1.2,
+      revealRadius: 200,
+      baseOpacity: 0.06,
+      peakOpacity: 0.55,
+      baseColor: [95, 149, 152],   // --color-accent RGB
+      glowColor: [122, 176, 179],  // --color-accent-light RGB
+      lerpSpeed: 0.1
+    };
+
+    this.init();
+  }
+
+  init() {
+    this.resize();
+    this.bindEvents();
+    this.animate();
+  }
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  bindEvents() {
+    window.addEventListener('resize', () => this.resize());
+
+    window.addEventListener('mousemove', (e) => {
+      this.target.x = e.clientX;
+      this.target.y = e.clientY;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      this.target.x = -9999;
+      this.target.y = -9999;
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      this.isVisible = !document.hidden;
+      if (this.isVisible) this.animate();
+    });
+  }
+
+  draw() {
+    const { spacing, dotRadius, revealRadius, baseOpacity, peakOpacity, baseColor, glowColor } = this.config;
+    const { ctx, canvas, mouse } = this;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const cols = Math.ceil(canvas.width / spacing) + 1;
+    const rows = Math.ceil(canvas.height / spacing) + 1;
+
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const x = col * spacing;
+        const y = row * spacing;
+
+        const dx = x - mouse.x;
+        const dy = y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const proximity = Math.max(0, 1 - dist / revealRadius);
+        const eased = proximity * proximity * (3 - 2 * proximity); // smoothstep
+
+        const opacity = baseOpacity + (peakOpacity - baseOpacity) * eased;
+        const r = Math.round(baseColor[0] + (glowColor[0] - baseColor[0]) * eased);
+        const g = Math.round(baseColor[1] + (glowColor[1] - baseColor[1]) * eased);
+        const b = Math.round(baseColor[2] + (glowColor[2] - baseColor[2]) * eased);
+        const radius = dotRadius + eased * 0.8;
+
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${opacity})`;
+        ctx.fill();
+      }
+    }
+  }
+
+  animate() {
+    if (!this.isVisible) return;
+
+    // Lerp mouse toward target for smooth follow
+    this.mouse.x += (this.target.x - this.mouse.x) * this.config.lerpSpeed;
+    this.mouse.y += (this.target.y - this.mouse.y) * this.config.lerpSpeed;
+
+    this.draw();
+    this.animationId = requestAnimationFrame(() => this.animate());
+  }
+
+  destroy() {
+    if (this.animationId) cancelAnimationFrame(this.animationId);
   }
 }
 
@@ -726,10 +918,37 @@ class SkillsRadarObserver {
 // INITIALIZATION
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize particle system
+  // Initialize particle system early so the canvas is ready (but burst fires on splash clear)
   const particleCanvas = document.getElementById('particle-canvas');
+  let particleNetwork = null;
   if (particleCanvas) {
-    new ParticleNetwork(particleCanvas);
+    particleNetwork = new ParticleNetwork(particleCanvas);
+  }
+
+  // Intro splash
+  const splash = document.getElementById('intro-splash');
+  const heroContent = document.querySelector('.hero-content');
+  if (splash && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setTimeout(() => {
+      splash.classList.add('fade-out');
+      splash.addEventListener('transitionend', () => {
+        splash.remove();
+        if (heroContent) heroContent.classList.add('hero-visible');
+        // Fire the neural network burst now that the hero is revealed
+        if (particleNetwork) particleNetwork.startBurst();
+      }, { once: true });
+    }, 1800);
+  } else {
+    if (splash) splash.remove();
+    if (heroContent) heroContent.classList.add('hero-visible');
+    // No splash — burst immediately
+    if (particleNetwork) particleNetwork.startBurst();
+  }
+
+  // Initialize dot grid background
+  const dotGridCanvas = document.getElementById('dot-grid-canvas');
+  if (dotGridCanvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    new DotGrid(dotGridCanvas);
   }
 
   // Initialize skills radar chart
