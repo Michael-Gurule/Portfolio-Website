@@ -417,12 +417,16 @@ pre {
     align-items: center;
     justify-content: center;
     gap: var(--space-8);
-    transition: right var(--transition-slow);
-    z-index: var(--z-fixed);
+    /* Clear the nav bar, which stays on top so its close button is reachable */
+    padding-top: var(--nav-height);
+    visibility: hidden;
+    transition: right var(--transition-slow), visibility var(--transition-slow);
+    z-index: calc(var(--z-fixed) - 1);
 }
 
 .nav-mobile.active {
     right: 0;
+    visibility: visible;
 }
 
 .nav-mobile a {

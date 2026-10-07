@@ -134,38 +134,51 @@ class Navigation {
             this.updateActiveLink();
         });
 
-        // Mobile menu toggle
-        if (this.navToggle && this.navMobile) {
-            this.navToggle.addEventListener('click', () => {
-                this.toggleMobileMenu();
-            });
-
-            // Close mobile menu when clicking a link
-            this.navMobile.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    this.closeMobileMenu();
-                });
-            });
-        }
-
-        // Smooth scroll for nav links
-        this.navLinks.forEach(link => {
+        // Smooth scroll for desktop nav links; mobile menu links are handled below
+        document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
                 if (href.startsWith('#')) {
                     e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        const offset = this.nav.offsetHeight;
-                        const targetPosition = target.offsetTop - offset;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
+                    this.scrollToSection(href);
                 }
             });
         });
+
+        if (this.navToggle && this.navMobile) {
+            this.navToggle.addEventListener('click', () => {
+                if (this.isMenuOpen()) this.closeMobileMenu();
+                else this.openMobileMenu();
+            });
+
+            this.navMobile.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => this.onMenuLinkClick(e, link));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && this.isMenuOpen()) {
+                    this.closeMobileMenu();
+                    this.navToggle.focus();
+                }
+            });
+
+            window.addEventListener('popstate', () => this.onPopState());
+
+            // The toggle disappears at the laptop breakpoint, so don't leave the menu open behind it
+            window.matchMedia('(min-width: 64em)').addEventListener('change', (e) => {
+                if (e.matches) this.closeMobileMenu();
+            });
+        }
+    }
+
+    scrollToSection(href) {
+        const target = document.querySelector(href);
+        if (target) {
+            window.scrollTo({
+                top: target.offsetTop - this.nav.offsetHeight,
+                behavior: 'smooth'
+            });
+        }
     }
 
     updateActiveLink() {
@@ -187,21 +200,65 @@ class Navigation {
         });
     }
 
-    toggleMobileMenu() {
-        this.navToggle.classList.toggle('active');
-        this.navMobile.classList.toggle('active');
-        this.navToggle.setAttribute(
-            'aria-expanded',
-            this.navMobile.classList.contains('active')
-        );
-        document.body.style.overflow = this.navMobile.classList.contains('active') ? 'hidden' : '';
+    // The open menu gets its own history entry, so the back button closes it
+    // instead of leaving the site.
+    isMenuOpen() {
+        return this.navMobile.classList.contains('active');
+    }
+
+    setMenuState(open) {
+        this.navToggle.classList.toggle('active', open);
+        this.navMobile.classList.toggle('active', open);
+        this.navToggle.setAttribute('aria-expanded', String(open));
+        this.navToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+        this.navMobile.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    openMobileMenu() {
+        this.setMenuState(true);
+        history.pushState({ navMenu: true }, '');
     }
 
     closeMobileMenu() {
-        this.navToggle.classList.remove('active');
-        this.navMobile.classList.remove('active');
-        this.navToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        if (!this.isMenuOpen()) return;
+        this.setMenuState(false);
+        if (history.state && history.state.navMenu) history.back(); // popstate finishes any pending link
+    }
+
+    onMenuLinkClick(e, link) {
+        if (link.target === '_blank') {
+            this.closeMobileMenu(); // the new tab opens as usual
+            return;
+        }
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (history.state && history.state.navMenu) {
+            // Pop the menu entry first, so back from the destination doesn't land on a closed menu
+            this.pendingHref = href;
+            this.closeMobileMenu();
+        } else {
+            this.setMenuState(false);
+            this.follow(href);
+        }
+    }
+
+    onPopState() {
+        const menuEntry = Boolean(history.state && history.state.navMenu);
+        if (menuEntry !== this.isMenuOpen()) this.setMenuState(menuEntry);
+
+        if (this.pendingHref) {
+            const href = this.pendingHref;
+            this.pendingHref = null;
+            // Wait out the history traversal; the browser restores scroll after popstate
+            // and would undo a scroll or drop a navigation started inside it
+            setTimeout(() => this.follow(href), 0);
+        }
+    }
+
+    follow(href) {
+        if (href.startsWith('#')) this.scrollToSection(href);
+        else window.location.href = href;
     }
 }
 
