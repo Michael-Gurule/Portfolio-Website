@@ -69,9 +69,17 @@ obj/
 *.sqlite3
 *.db
 # Site data files are content, not datasets
-!data/*.json
+!public/data/*.json
 
-# Full Boska font package: licence forbids serving it publicly; the site uses Assets/fonts only
+# --- Astro / Node ---
+node_modules/
+.astro/
+!package.json
+!package-lock.json
+!tsconfig.json
+
+# Full Boska font package: licence forbids serving it publicly; the site uses public/Assets/fonts only.
+# Keep it outside public/, since everything in public/ is deployed.
 Assets/Boska_Complete/
 
 # Internal design notes, not part of the published site

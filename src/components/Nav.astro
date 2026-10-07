@@ -1,0 +1,50 @@
+---
+// Desktop nav and mobile menu. On the home page section links stay plain
+// #anchors, which main.js relies on for scroll-spy and smooth scrolling.
+interface Props {
+    onHome?: boolean;
+    active?: 'about';
+}
+
+const { onHome = false, active } = Astro.props;
+const prefix = onHome ? '#' : '/#';
+const sections = [
+    { id: 'about', label: 'About' },
+    { id: 'current-work', label: 'Current Work' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'writing', label: 'Writing' },
+    { id: 'contact', label: 'Contact' },
+];
+---
+
+<!-- Navigation -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+        <a href={onHome ? '#hero' : '/'} class="wordmark nav-wordmark">Michael Gurule</a>
+        <div class="nav-status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="status-label">Open to opportunities</span>
+        </div>
+        <ul class="nav-links">
+            {sections.map(({ id, label }) => (
+                <li>
+                    {active === id
+                        ? <a href={prefix + id} class="active" aria-current="page">{label}</a>
+                        : <a href={prefix + id}>{label}</a>}
+                </li>
+            ))}
+            <li><a href="/resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" aria-hidden="true">
+    {sections.map(({ id, label }) => <a href={prefix + id}>{label}</a>)}
+    <a href="/resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+</div>

@@ -1,0 +1,100 @@
+---
+// Shared page shell: head, nav, footer, and the site script.
+// Pages pass their own SEO fields; page-only markup goes through the named slots.
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    /** Canonical path, e.g. "/" or "/about/" */
+    path: string;
+    ogType?: 'website' | 'profile' | 'article';
+    /** Social card text when it differs from the meta description */
+    ogDescription?: string;
+    keywords?: string;
+    /** Emit twitter:title, twitter:description, and twitter:image:alt */
+    twitterText?: boolean;
+    /** The home page links to its own sections with plain #anchors */
+    onHome?: boolean;
+    navActive?: 'about';
+    backToTop: string;
+}
+
+const {
+    title,
+    description,
+    path,
+    ogType = 'website',
+    ogDescription = description,
+    keywords,
+    twitterText = false,
+    onHome = false,
+    navActive,
+    backToTop,
+} = Astro.props;
+
+const siteName = 'Michael Gurule, Applied Scientist and ML Architect';
+const canonical = new URL(path, Astro.site).href;
+const ogImage = new URL('/Assets/images/og.png', Astro.site).href;
+---
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    {keywords && <meta name="keywords" content={keywords}>}
+    <meta name="author" content="Michael Gurule">
+    <link rel="canonical" href={canonical}>
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content={ogType}>
+    <meta property="og:url" content={canonical}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={ogDescription}>
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content={siteName}>
+    <meta name="twitter:card" content="summary_large_image">
+    {twitterText && <meta name="twitter:title" content={title}>}
+    {twitterText && <meta name="twitter:description" content={ogDescription}>}
+    <meta name="twitter:image" content={ogImage}>
+    {twitterText && <meta name="twitter:image:alt" content={siteName}>}
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/Assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#F7F8FA">
+
+    <!-- Fonts: Boska self-hosted, body and mono from Google Fonts -->
+    <link rel="preload" href="/Assets/fonts/Boska-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet: served as-is from public/ so Astro doesn't scope or reorder it -->
+    <link rel="stylesheet" href="/css/style.css">
+    <slot name="head" />
+</head>
+
+<body>
+    <slot name="before-nav" />
+    <Nav onHome={onHome} active={navActive} />
+
+    <slot />
+
+    <Footer backToTop={backToTop} />
+    <slot name="after-footer" />
+
+    <!-- Scripts -->
+    <script is:inline src="/js/main.js" defer></script>
+</body>
+
+</html>
