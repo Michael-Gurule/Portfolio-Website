@@ -4,39 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Gurule, Applied Scientist and ML Architect</title>
     <meta name="description"
-        content="Data Scientist & Machine Learning Engineer specializing in building intelligent systems with Python, TensorFlow, and cloud technologies.">
+        content="I build statistical and machine learning systems for operational data that arrives noisy, unlabeled, and shifting, and I design the cloud systems that keep them working after launch.">
     <meta name="keywords"
-        content="Data Scientist, Machine Learning Engineer, Python, TensorFlow, PyTorch, Deep Learning, NLP, Computer Vision">
-    <meta name="author" content="MICHAEL GURULE">
+        content="data science, machine learning engineer, anomaly detection, time series, Bayesian statistics, optimization, information theory, production ML, telemetry, AWS">
+    <meta name="author" content="Michael Gurule">
+    <link rel="canonical" href="https://michaelgurule.com/">
 
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Michael Gurule | Data Scientist & Machine Learning Engineer">
-    <meta property="og:description" content="Portfolio showcasing machine learning projects and data science expertise">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="Assets/images/og-preview.png">
-
-    <!-- Twitter Card -->
+    <meta property="og:url" content="https://michaelgurule.com/">
+    <meta property="og:title" content="Michael Gurule, Applied Scientist and ML Architect">
+    <meta property="og:description"
+        content="I build statistical models for noisy, sparsely labeled, shifting data, and design the cloud systems that keep them working after launch.">
+    <meta property="og:image" content="https://michaelgurule.com/Assets/images/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Michael Gurule, Applied Scientist and ML Architect">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Michael Gurule | Data Scientist & ML Engineer">
-    <meta name="twitter:description" content="Portfolio showcasing machine learning projects">
+    <meta name="twitter:title" content="Michael Gurule, Applied Scientist and ML Architect">
+    <meta name="twitter:description"
+        content="I build statistical models for noisy, sparsely labeled, shifting data, and design the cloud systems that keep them working after launch.">
+    <meta name="twitter:image" content="https://michaelgurule.com/Assets/images/og.png">
+    <meta name="twitter:image:alt" content="Michael Gurule, Applied Scientist and ML Architect">
 
-    <title>Michael Gurule | Data Scientist & Machine Learning Engineer</title>
+    <!-- Icons -->
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="icon" href="Assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#F7F8FA">
 
-    <!-- Preconnect for Performance -->
+    <!-- Fonts: Boska self-hosted, body and mono from Google Fonts -->
+    <link rel="preload" href="Assets/fonts/Boska-Variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="Assets/images/profile/favcon.png">
+    <!-- Intro plays once per session, from the top of a fresh load, unless motion is reduced -->
+    <script>
+        (function () {
+            try {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                if (location.hash || sessionStorage.getItem('mg-intro')) return;
+                sessionStorage.setItem('mg-intro', '1');
+                document.documentElement.classList.add('intro-active');
+            } catch (e) { }
+        })();
+    </script>
 
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
@@ -44,29 +64,40 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Michael Gurule",
-    "jobTitle": "Data Scientist & Machine Learning Engineer",
+    "jobTitle": "Applied Scientist and ML Architect",
     "url": "https://michaelgurule.com",
     "sameAs": [
-      "https://linkedin.com/in/michael-j-gurule",
-      "https://github.com/michael-gurule",
+      "https://linkedin.com/in/michael-gurule-denver",
+      "https://github.com/michael-gurule"
     ]
   }
   </script>
 </head>
 
 <body>
+    <!-- Intro overlay (decorative) -->
+    <div class="intro" aria-hidden="true">
+        <div class="intro-inner">
+            <span class="intro-name">Michael Gurule</span>
+            <span class="intro-title">Applied Scientist and ML Architect</span>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="#" class="nav-logo" aria-label="Home">
-                <img src="Assets/images/profile/WM_sized.png" alt="Michael Gurule" class="nav-logo-img">
-            </a>
+            <a href="#hero" class="wordmark nav-wordmark">Michael Gurule</a>
+            <div class="nav-status">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span class="status-label">Open to opportunities</span>
+            </div>
             <ul class="nav-links">
-                <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#current-work">Current Work</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#insights">Insights</a></li>
+                <li><a href="#writing">Writing</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="/resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
@@ -78,90 +109,68 @@
 
     <!-- Mobile Menu -->
     <div class="nav-mobile" aria-hidden="true">
-        <a href="#philosophy">Philosophy</a>
-        <a href="#expertise">Expertise</a>
-        <a href="projects">Projects</a>
-        <a href="#insights">Insights</a>
+        <a href="#about">About</a>
+        <a href="#current-work">Current Work</a>
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
         <a href="#contact">Contact</a>
+        <a href="/resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
     </div>
 
-    <!-- Intro Splash -->
-    <div class="intro-splash" id="intro-splash" aria-hidden="true">
-        <img src="Assets/images/profile/watermark_gray.png" alt="" class="intro-logo">
-    </div>
-
-    <!-- Wire Mesh Background -->
-    <canvas id="dot-grid-canvas" aria-hidden="true"></canvas>
-
+    <main>
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                Data Scientist & Machine Learning Engineer
-            </div>
-            <br>
-            <br>
-
-            <h1 class="hero-title">
-                <span class="title-line">Architecting Intelligent Systems</span>
-            </h1>
-            <br>
-
-            <p class="subtext">Engineering high-integrity Machine Learning systems and Bayesian frameworks for the
-                world’s most complex data environments.</p>
+        <div class="container">
+            <h1 class="hero-title">Michael Gurule</h1>
+            <p class="hero-kicker">Applied Scientist and ML Architect</p>
+            <p class="hero-lead">Most of the difficulty in operational data shows up before the model does.</p>
+            <p class="hero-summary">
+                I build statistical models for noisy, sparsely labeled, shifting data, and design the cloud systems
+                that keep them working after launch.
             </p>
-            <br>
-
 
             <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <a href="#contact" class="btn btn-primary">Get in touch</a>
+                <a href="#projects" class="btn btn-secondary">
+                    Selected projects
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
                     </svg>
-                    View My Work
                 </a>
             </div>
-        </div>
-        <div class="scroll-indicator" aria-hidden="true">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19.5 8.25L12 15.75L4.5 8.25" />
-            </svg>
+
+            <div class="hero-social">
+                <a href="https://github.com/michael-gurule" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://linkedin.com/in/michael-gurule-denver" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://medium.com/@michaelgurule1164" target="_blank" rel="noopener">Medium</a>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="section philosophy" id="philosophy">
+    <section class="section about" id="about">
         <div class="container">
-            <h2 class="section-title fade-in" data-reveal="left">My <span>Philosophy</span></h2>
-            <div class="philosophy-content">
-                <div class="philosophy-image fade-in" data-reveal="left">
+            <h2 class="section-title fade-in" data-reveal="left">About</h2>
+            <div class="about-content">
+                <div class="about-image fade-in" data-reveal="left">
                     <div class="image-frame">
-
-                        <img src="Assets/images/profile/headshot.png" alt="Michael Gurule - Data Scientist"
+                        <img src="Assets/images/profile/headshot.png" alt="Michael Gurule" width="1180" height="1180"
                             loading="lazy">
-                        <div class="image-overlay"></div>
                     </div>
                     <div class="location-badge">
-                        <!-- Colorado state shape clip-path -->
-                        <svg width="0" height="0" style="position:absolute">
+                        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
                             <defs>
                                 <clipPath id="colorado-clip" clipPathUnits="objectBoundingBox">
-                                    <!-- Colorado: rectangle with surveyed NW step and SE step -->
                                     <path
                                         d="M0.034,0 L1,0 L1,0.987 L0.966,0.987 L0.966,1 L0,1 L0,0.013 L0.034,0.013 Z" />
                                 </clipPath>
                             </defs>
                         </svg>
                         <div class="location-badge-inner">
-                            <svg class="location-pin" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="location-pin" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
                                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
                                 <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none" />
                             </svg>
@@ -169,252 +178,165 @@
                         </div>
                     </div>
                 </div>
-                <div class="philosophy-text fade-in fade-in-delay-1" data-reveal="right">
-                    <h3 class="philosophy-subtitle">
-                        Some problems get solved. Others get understood.<br><span class="highlight">Getting that order
-                            right changes everything that follows..</span>
-                    </h3>
-                    <br>
-                    <p>
-                        We generate more data than we have ever known what to do with.<b> But volume is not insight.</b>
-                        Translating what data actually means for a business requires something that no model supplies on
-                        its own: an understanding of what drives that business, an eye for what matters versus what
-                        merely appears to matter, and the discipline to cut through the noise before drawing any
-                        conclusions.
-                    <p>I think about business challenges in terms of value-added. Not activity, not complexity, and
-                        definitely not sophistication for its own sake. <b>Value-added.</b> The best solution to a
-                        problem is
-                        often quieter than expected, and finding it requires more patience than cleverness.</p>
-                    <p>
-                        That is the work I find worth doing.
+                <div class="about-text fade-in fade-in-delay-1" data-reveal="right">
+                    <p class="about-title">Principal Engineer II &middot; Telemetry and AI Operational Intelligence</p>
+                    <p class="about-role">
+                        Designing the models and cloud architecture that turn
+                        <span class="about-role-accent">operational data into early warning.</span>
                     </p>
-
+                    <p class="about-body">
+                        Right now I lead a greenfield anomaly detection, correlation, and forecasting platform built for
+                        a network of about 32 million broadband endpoints. Before that I spent close to a decade in consulting and
+                        applied data science across financial services, insurance risk, and industrial commodities,
+                        learning each industry well enough to understand what its data was saying.
+                    </p>
+                    <p class="about-credentials">
+                        MS Applied Mathematics &middot; BS Finance and Risk &middot; AWS Certified Machine Learning
+                        Engineer
+                    </p>
+                    <a href="about/" class="text-link about-more" data-bio-open>
+                        Read the full story
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TECHNICAL EXPERTISE SECTION -->
-    <section class="expertise-container" id="expertise">
+    <!-- Current Work Section -->
+    <section class="section current-work" id="current-work">
         <div class="container">
-            <h2 class="section-title fade-in" data-reveal="left">Technical <span>Expertise</span></h2>
+            <h2 class="section-title fade-in" data-reveal="left">Current Work</h2>
+            <p class="section-subtitle fade-in fade-in-delay-1" data-reveal="left">
+                The network already reported its health every five minutes. The hard part was reading it: hand-set
+                thresholds that couldn't tell a daily traffic peak from a fault, and alerts that could only be grouped
+                by whichever team a device belonged to.
+            </p>
 
-            <div class="expertise-grid">
-                <div class="expertise-card-wrapper">
-                    <div class="card-header fade-in fade-in-delay-1" data-reveal="scale">
-                        <h3>ALGORITHMIC STRATEGY</h3>
-                    </div>
-                    <article class="expertise-card">
-                        <ul style="list-style-type: disc;">
-                            <li>Probabilistic Graphical Models</li>
-                            <li>Bayesian Inference at Scale</li>
-                            <li>Causal Discovery & Reasoning</li>
-                            <li>Advanced Optimization</li>
-                        </ul>
-                    </article>
+            <ul class="figures fade-in" data-reveal="up">
+                <li class="figure">
+                    <span class="figure-value">~1B</span>
+                    <span class="figure-label mono-label">series scored today</span>
+                </li>
+                <li class="figure">
+                    <span class="figure-value">6&ndash;12B</span>
+                    <span class="figure-label mono-label">series in scope</span>
+                </li>
+                <li class="figure">
+                    <span class="figure-value">8</span>
+                    <span class="figure-label mono-label">network domains</span>
+                </li>
+            </ul>
+            <p class="figures-note fade-in" data-reveal="up">
+                It started with a single streaming app. Video is nearly fully onboarded, and the remaining domains are
+                coming on one at a time.
+            </p>
+
+            <div class="decisions">
+                <div class="decision fade-in" data-reveal="up">
+                    <h3>Baselines that know the calendar</h3>
+                    <p>Telemetry swings by hour, day, month, and season, and fixed thresholds treated every peak as a
+                        fault. Each signal is now scored against a baseline that carries those cycles, so normal swings
+                        stop opening tickets.</p>
                 </div>
-
-
-                <div class="expertise-card-wrapper">
-                    <div class="card-header fade-in fade-in-delay-1" data-reveal="scale">
-                        <h3>SYSTEMS ARCHITECTURE</h3>
-                    </div>
-                    <article class="expertise-card">
-                        <ul style="list-style-type: disc;">
-                            <li>Cloud-Native AI Solutions</li>
-                            <li>Enterprise MLOps & Governance</li>
-                            <li>Real-time Feature Engineering</li>
-                            <li>High-Performance Computing</li>
-                        </ul>
-                    </article>
+                <div class="decision fade-in fade-in-delay-1" data-reveal="up">
+                    <h3>Root cause, not team boundaries</h3>
+                    <p>Alerts used to be grouped only by the team a device was assigned to. Correlation now follows the
+                        network topology, tracing a degradation upstream to its source and out to the services,
+                        markets, device models, and software versions it touches.</p>
                 </div>
-
-                <div class="expertise-card-wrapper">
-                    <div class="card-header fade-in fade-in-delay-1" data-reveal="scale">
-                        <h3>DOMAIN EXPERTISE</h3>
-                    </div>
-                    <article class="expertise-card">
-                        <ul style="list-style-type: disc;">
-                            <li>Financial Intelligence</li>
-                            <li>Predictive Marketing Analytics</li>
-                            <li>Quantitative Risk Modeling</li>
-                            <li>Strategic Stakeholder Advisory</li>
-                        </ul>
-                    </article>
+                <div class="decision fade-in fade-in-delay-2" data-reveal="up">
+                    <h3>Tuned by the pipeline, checked by people</h3>
+                    <p>A statistical scorer sets the floor, and an automated tuning pipeline retunes the model stack on
+                        its own. Drift alerts say when to look, and every flagged anomaly is reviewed and labeled. Those
+                        labels feed back into training.</p>
                 </div>
             </div>
-    </section>
 
-    <section class="technical-ecosystem">
-        <div class="header-container">
-            <h3>Technical Ecosystem</h3>
-        </div>
-        <div class="tech-grid">
-            <div class="tech-category">
-                <h4>Inference & Logic</h4>
-                <p>PyTorch, TensorFlow, XGBoost, Scikit-Learn, PyMC, JAX, FastAPI, Streamlite</p>
+            <!-- Roadmap: set data-current to the phase in progress (1 to 4) -->
+            <div class="roadmap fade-in" data-reveal="up" data-current="4">
+                <ol class="roadmap-steps">
+                    <li><span class="roadmap-phase mono-label">Live</span>Detection</li>
+                    <li><span class="roadmap-phase mono-label">Live</span>Correlation</li>
+                    <li><span class="roadmap-phase mono-label">Near-term ready</span>Forecasting</li>
+                    <li><span class="roadmap-phase mono-label">In design</span>Agentic operations</li>
+                </ol>
+                <p class="roadmap-note">Now defining the operating flow and guardrails for agents that act on what the
+                    platform finds, alongside security and policy review.</p>
             </div>
-            <div class="tech-category">
-                <h4>Data & Ops</h4>
-                <p>AWS, PostgreSQL, Spark, Docker, Kubernetes, Airflow, Databricks, Snowflake, Git/Github</p>
-            </div>
-            <div class="tech-category">
-                <h4>Intelligence</h4>
-                <p>Frontier APIs, Open-Weight Models, Model Context Protocol, Vector Orchestration, Knowledge Graphs</p>
-            </div>
-        </div>
-        <blockquote class="expertise-quote fade-in">
-            <p>"It's not that I'm so smart, it's just that I stay with problems longer."</p>
-            <cite>— Albert Einstein</cite>
-        </blockquote>
         </div>
     </section>
 
+    <!-- What I Work On Section -->
+    <section class="section work" id="work">
+        <div class="container">
+            <h2 class="section-title fade-in" data-reveal="left">What I Work On</h2>
+
+            <div class="work-grid">
+                <div class="work-column fade-in fade-in-delay-1" data-reveal="scale">
+                    <h3>Applied Science</h3>
+                    <ul>
+                        <li>Regression, splines, and generalized additive models</li>
+                        <li>Bayesian and hierarchical models</li>
+                        <li>Non-stationary time series and change-point detection</li>
+                        <li>Survival analysis, Kalman filtering, and state estimation</li>
+                    </ul>
+                </div>
+
+                <div class="work-column fade-in fade-in-delay-2" data-reveal="scale">
+                    <h3>ML Architecture</h3>
+                    <ul>
+                        <li>Streaming inference on AWS for fleet telemetry</li>
+                        <li>Root-cause correlation across network topology</li>
+                        <li>Feature budgets under compute limits</li>
+                        <li>Validation under temporal dependence</li>
+                        <li>Drift detection, automated tuning, and retraining</li>
+                    </ul>
+                </div>
+
+                <div class="work-column fade-in fade-in-delay-3" data-reveal="scale">
+                    <h3>Direction</h3>
+                    <ul>
+                        <li>Platform roadmaps from detection to agentic operations</li>
+                        <li>Evaluation design and ground truth strategy</li>
+                        <li>Release standards: SLAs, thresholds, promotion</li>
+                        <li>Guardrails for agents acting on detections</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="work-applied fade-in" data-reveal="up">
+                Applied across network and device telemetry, insurance risk, marketing attribution, satellite health,
+                and multi-sensor positioning.
+            </p>
+
+            <div class="technical-ecosystem">
+                <h3 class="ecosystem-title mono-label">Technical Ecosystem</h3>
+                <!-- Rendered from data/stack.json -->
+                <div class="tech-grid" data-stack-source="data/stack.json"></div>
+            </div>
+        </div>
+    </section>
 
     <!-- Projects Section -->
     <section class="section projects" id="projects">
         <div class="container">
-            <h2 class="section-title fade-in" data-reveal="left">Featured <span>Projects</span></h2>
+            <h2 class="section-title fade-in" data-reveal="left">Featured Work</h2>
             <p class="section-subtitle fade-in fade-in-delay-1" data-reveal="left">
-                A selection of my recent work in Machine Learning and Data Science
+                Systems built around sparse ground truth, non-stationary signal, and sensors that disagree.
             </p>
 
-            <!-- Projects Grid -->
-            <div class="projects-grid">
-                <!-- Project Card 1 -->
-                <article class="project-card fade-in" data-reveal="up" data-category="ml nlp">
-                    <div class="project-image">
-                        <img src="Assets/images/projects/Pro_Card-03.png" alt="HYPERION" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">Physics Informed Neural Networks</span>
-                            <span class="tag">Multi-Sensor Fusion</span>
-                            <span class="tag">Real-Time Systems</span>
-                        </div>
-                        <h3 class="project-title">Multi-Agent Reinforcement Learning</h3>
-                        <p class="project-description">
-                            HYPERION is a sophisticated machine learning platform designed to simulate and optimize
-                            autonomous drone
-                            swarms for the detection, tracking, and interception of hypersonic threats in aerospace and
-                            defense (A&D)
-                            scenarios.
-                        </p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <span class="metric-value">1-50 Agents</span>
-                                <span class="metric-label">Scalable</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">50ms</span>
-                                <span class="metric-label">Latency</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">5M+</span>
-                                <span class="metric-label">Time Steps</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/Michael-Gurule/hyperion" class="project-github-link"
-                            aria-label="View on GitHub" target="_blank" rel="noopener">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                            </svg>
-                            GitHub
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Project Card 2 -->
-                <article class="project-card fade-in fade-in-delay-1" data-reveal="up" data-category="ml nlp">
-                    <div class="project-image">
-                        <img src="Assets/images/projects/Pro_Card-01.png" alt="ADELON" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">Bayesian Inference Engine</span>
-                            <span class="tag">Latent Variable Modeling</span>
-                            <span class="tag">DAGs</span>
-                            <span class="tag">ROI</span>
-                        </div>
-                        <h3 class="project-title">Bayesian Marketing Mix Model</h3>
-                        <p class="project-description">
-                            A Bayesian Marketing Mix Model built with PyMC. This model breaks revenue into the
-                            components that drive it — baseline, trend, seasonality, media spend across 5 channels, and
-                            external controls — then uses the fitted response curves to optimize budget allocation.
-                        </p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <span class="metric-value">2.57%</span>
-                                <span class="metric-label">MAPE</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value"> &lt; 1.005</span>
-                                <span class="metric-label">R-hat</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/Michael-Gurule/adelon" class="project-github-link"
-                            aria-label="View on GitHub" target="_blank" rel="noopener">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                            </svg>
-                            GitHub
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Project Card 3 -->
-                <article class="project-card fade-in fade-in-delay-2" data-reveal="up"
-                    data-category="quantitative modeling">
-                    <div class="project-image">
-                        <img src="Assets/images/projects/Pro_Card-02.png" alt="MERIDIAN" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">Regime Detection</span>
-                            <span class="tag">Covariance Estimation</span>
-                            <span class="tag">GARCH (1,1)</span>
-                            <span class="tag">Return Forecasting</span>
-                        </div>
-                        <h3 class="project-title">Multi-Asset Portfolio Optimization</h3>
-                        <p class="project-description">
-                            MERIDIAN is a comprehensive investment portfolio optimization system combining multi-source
-                            market data
-                            acquisition, regime-conditional optimization, realistic transaction cost modeling, and an
-                            interactive
-                            decision support dashboard.
-                        </p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <span class="metric-value">10yrs</span>
-                                <span class="metric-label">Asset Data</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">25+</span>
-                                <span class="metric-label">Assets</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/Michael-Gurule/MERIDIAN" class="project-github-link"
-                            aria-label="View on GitHub" target="_blank" rel="noopener">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                            </svg>
-                            GitHub
-                        </a>
-                    </div>
-                </article>
-            </div>
+            <!-- Rendered from data/projects.json -->
+            <div class="projects-stack" data-projects-source="data/projects.json"></div>
 
             <div class="projects-cta fade-in">
                 <a href="https://github.com/michael-gurule" class="btn btn-secondary" target="_blank" rel="noopener">
                     View All Projects on GitHub
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
                     </svg>
                 </a>
@@ -422,115 +344,83 @@
         </div>
     </section>
 
-    <!-- INSIGHTS SECTION -->
-    <section class="section insights" id="insights">
+    <!-- Writing Section -->
+    <section class="section writing" id="writing">
         <div class="container">
-            <h2 class="section-title fade-in" data-reveal="left">Insights <span></h2>
+            <h2 class="section-title fade-in" data-reveal="left">Writing</h2>
             <p class="section-subtitle fade-in fade-in-delay-1" data-reveal="left">
-                Thoughts on machine learning, data science, and technology
+                Some of what I'm reading and working through, written up.<br>
+                Mostly about where methods stop working, which is the part that tends to get left out.
             </p>
 
-            <div class="insights-grid">
-
-                <!-- Insights Card 1 -->
-                <article class="insights-card fade-in" data-reveal="up">
-                    <div class="insights-image">
-                        <img src="Assets/images/blog/Website_Articles-17.png" alt="The Newcomb Paradox" loading="lazy">
-                    </div>
-                    <div class="insights-content">
-                        <div class="insights-meta">
-                            <time datetime="2026-03-09">Mar 9th, 2026</time>
-                            <span class="insights-read-time">8 min read</span>
-                        </div>
-                        <h3 class="insights-title">
-                            The Newcomb Paradox: What a Thought Experiment Can Teach Us About Trusting Models
-                            </a>
-                        </h3>
-                        <p class="insights-excerpt">
+            <div class="writing-list">
+                <a class="writing-row fade-in" data-reveal="up"
+                    href="https://medium.com/@michaelgurule1164/the-newcomb-paradox-what-a-thought-experiment-can-teach-us-about-trusting-models-beb11d1682b6"
+                    target="_blank" rel="noopener">
+                    <time class="writing-date mono-label" datetime="2026-03-09">Mar 9, 2026</time>
+                    <div class="writing-body">
+                        <h3 class="writing-title"><span>The Newcomb Paradox: What a Thought Experiment Can Teach Us
+                                About Trusting Models</span></h3>
+                        <p class="writing-excerpt">
                             The paradox will not tell you whether to take one box or two. But it will ask you, with
                             remarkable precision, whether you understand the system you are operating in well enough
                             to make that call.
                         </p>
-                        <a href="https://medium.com/@michaelgurule1164/the-newcomb-paradox-what-a-thought-experiment-can-teach-us-about-trusting-models-beb11d1682b6"
-                            target="_blank" rel="noopener" class="blog-link">
-                            Read on Medium
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M13.5 6H5.25C4.00736 6 3 7.00736 3 8.25V18.75C3 19.9926 4.00736 21 5.25 21H15.75C16.9926 21 18 19.9926 18 18.75V10.5M7.5 16.5L21 3M21 3L15.75 3M21 3V8.25" />
-                            </svg>
-                        </a>
                     </div>
-                </article>
+                    <span class="writing-arrow" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
+                        </svg>
+                    </span>
+                </a>
 
-                <!-- Insights Card 2 -->
-                <article class="insights-card fade-in" data-reveal="up">
-                    <div class="insights-image">
-                        <img src="Assets/images/blog/Website_Articles-16.png" alt="The Agentic Trap" loading="lazy">
-                    </div>
-                    <div class="insights-content">
-                        <div class="insights-meta">
-                            <time datetime="2026-03-03">Feb 8th, 2026</time>
-                            <span class="insights-read-time">6 min read</span>
-                        </div>
-                        <h3 class="insights-title">
-                            The Agentic Trap
-                            </a>
-                        </h3>
-                        <p class="insights-excerpt">
-                            We can’t escape it. The current buzz word that is being thrown around in every strategy
-                            meeting and quarterly earnings call — “Agentic”.
-
+                <a class="writing-row fade-in fade-in-delay-1" data-reveal="up"
+                    href="https://medium.com/@michaelgurule1164/the-agentic-trap-db73b00d53db" target="_blank"
+                    rel="noopener">
+                    <time class="writing-date mono-label" datetime="2026-02-08">Feb 8, 2026</time>
+                    <div class="writing-body">
+                        <h3 class="writing-title"><span>The Agentic Trap</span></h3>
+                        <p class="writing-excerpt">
+                            We can't escape it. The current buzz word being thrown around in every strategy meeting
+                            and quarterly earnings call is agentic.
                         </p>
-                        <a href="https://medium.com/@michaelgurule1164/the-agentic-trap-db73b00d53db" target="_blank"
-                            rel="noopener" class="blog-link">
-                            Read on Medium
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M13.5 6H5.25C4.00736 6 3 7.00736 3 8.25V18.75C3 19.9926 4.00736 21 5.25 21H15.75C16.9926 21 18 19.9926 18 18.75V10.5M7.5 16.5L21 3M21 3L15.75 3M21 3V8.25" />
-                            </svg>
-                        </a>
                     </div>
-                </article>
+                    <span class="writing-arrow" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
+                        </svg>
+                    </span>
+                </a>
 
-                <!-- Insights Card 3 -->
-                <article class="insights-card fade-in fade-in-delay-2" data-reveal="up">
-                    <div class="insights-image">
-                        <img src="Assets/images/blog/Website_Articles-18.png" alt="NET POSITIVE" loading="lazy">
-                    </div>
-                    <div class="insights-content">
-                        <div class="insights-meta">
-                            <time datetime="2026-01-16">Jan 16th, 2026</time>
-                            <span class="insights-read-time">4 min read</span>
-                        </div>
-                        <h3 class="insights-title">
-                            NET POSITIVE: A Data Scientist’s Philosophy for Building What Matters
-                            </a>
-                        </h3>
-                        <p class="insights-excerpt">
-                            The best technical talent doesn’t just build impressive systems. They build systems that
+                <a class="writing-row fade-in fade-in-delay-2" data-reveal="up"
+                    href="https://medium.com/@michaelgurule1164/net-positive-a-data-scientists-philosophy-for-building-what-matters-94225a8d7eea"
+                    target="_blank" rel="noopener">
+                    <time class="writing-date mono-label" datetime="2026-01-16">Jan 16, 2026</time>
+                    <div class="writing-body">
+                        <h3 class="writing-title"><span>Net Positive: A Data Scientist's Philosophy for Building What
+                                Matters</span></h3>
+                        <p class="writing-excerpt">
+                            The best technical talent doesn't just build impressive systems. They build systems that
                             create lasting value while respecting organizational constraints and operator needs.
                         </p>
-                        <a href="https://medium.com/@michaelgurule1164/net-positive-a-data-scientists-philosophy-for-building-what-matters-94225a8d7eea"
-                            target="_blank" rel="noopener" class="blog-link">
-                            Read on Medium
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M13.5 6H5.25C4.00736 6 3 7.00736 3 8.25V18.75C3 19.9926 4.00736 21 5.25 21H15.75C16.9926 21 18 19.9926 18 18.75V10.5M7.5 16.5L21 3M21 3L15.75 3M21 3V8.25" />
-                            </svg>
-                        </a>
                     </div>
-                </article>
-
+                    <span class="writing-arrow" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
+                        </svg>
+                    </span>
+                </a>
             </div>
 
-            <div class="insights-cta fade-in">
-                <a href="#" class="btn btn-secondary">
-                    View All Articles
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+            <div class="writing-cta fade-in">
+                <a href="https://medium.com/@michaelgurule1164" class="btn btn-secondary" target="_blank"
+                    rel="noopener">
+                    Read More on Medium
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
                     </svg>
                 </a>
@@ -541,70 +431,79 @@
     <!-- Contact Section -->
     <section class="section contact" id="contact">
         <div class="container">
-            <h2 class="section-title fade-in" data-reveal="up">Get In <span>Touch</span></h2>
-            <p class="section-subtitle fade-in fade-in-delay-1" data-reveal="up">
-                Interested in collaboration or have a project in mind? Let's talk.
+            <h2 class="section-title fade-in" data-reveal="left">Contact</h2>
+            <p class="section-subtitle fade-in fade-in-delay-1" data-reveal="left">
+                The fastest way to reach me is email. I read everything and reply within a few days.
             </p>
 
-            <div class="contact-content">
-                <!-- Contact Form -->
-                <form class="contact-form fade-in fade-in-delay-2" data-reveal="scale"
-                    action="https://formspree.io/f/mvzgeoyz" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required autocomplete="email"
-                            placeholder="your.email@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required placeholder="What's this about?">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required
-                            placeholder="Your message..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">
+            <div class="contact-actions fade-in fade-in-delay-2" data-reveal="up">
+                <div class="contact-email">
+                    <a href="mailto:michael@michaelgurule.com"
+                        class="contact-email-link">michael@michaelgurule.com</a>
+                    <button type="button" class="btn-copy" data-copy="michael@michaelgurule.com"
+                        aria-label="Copy email address">Copy</button>
+                    <span class="visually-hidden" role="status" aria-live="polite"></span>
+                </div>
+                <div class="contact-links">
+                    <a href="https://linkedin.com/in/michael-gurule-denver" class="btn btn-secondary" target="_blank"
+                        rel="noopener">LinkedIn</a>
+                    <a href="/resume.pdf" class="btn btn-secondary" download>
+                        Download resume
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M5.99972 12L3.2688 3.12451C9.88393 5.04617 16.0276 8.07601 21.4855 11.9997C16.0276 15.9235 9.884 18.9535 3.26889 20.8752L5.99972 12ZM5.99972 12L13.5 12" />
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 4v12M12 16l-5-5M12 16l5-5M5 20h14" />
                         </svg>
-                        Send Message
-                    </button>
-                </form>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="Assets/images/profile/watermark_gray.png" alt="Michael Gurule" class="footer-logo-img">
+                <div class="footer-top">
+                    <span class="wordmark footer-wordmark">Michael Gurule</span>
+                    <a href="#hero" class="back-to-top">
+                        Back to top
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 19V5M12 5L5 12M12 5L19 12" />
+                        </svg>
+                    </a>
                 </div>
-                <p class="footer-tagline">
-                    Architecting Intelligent Systems.
-                </p>
-                <div class="footer-links">
-                    <a href="https://github.com/michael-gurule" target="_blank" rel="noopener">GitHub</a>
-                    <a href="https://linkedin.com/in/michael-j-gurule" target="_blank" rel="noopener">LinkedIn</a>
-                    <a href="https://medium.com/@michaelgurule" target="_blank" rel="noopener">Medium</a>
+                <div class="footer-bottom">
+                    <p class="footer-meta">Denver, CO &middot; Mountain Time</p>
+                    <p class="footer-tagline">Applied science and ML architecture.</p>
+                    <div class="footer-links">
+                        <a href="https://github.com/michael-gurule" target="_blank" rel="noopener">GitHub</a>
+                        <a href="https://linkedin.com/in/michael-gurule-denver" target="_blank" rel="noopener">LinkedIn</a>
+                        <a href="https://medium.com/@michaelgurule1164" target="_blank" rel="noopener">Medium</a>
+                    </div>
+                    <p class="footer-copyright">&copy; 2026 Michael Gurule.</p>
                 </div>
-                <p class="footer-copyright">
-                    &copy; 2026 Michael Gurule. All rights reserved.
-                </p>
             </div>
         </div>
     </footer>
 
+    <!-- Bio card: filled from about/index.html when opened -->
+    <dialog class="bio-dialog" id="bio-card" aria-labelledby="bio-title">
+        <div class="bio-backdrop"></div>
+        <div class="bio-card">
+            <button type="button" class="bio-close" aria-label="Close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+            </button>
+            <div class="bio-body prose"></div>
+        </div>
+    </dialog>
+
     <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 </body>
 
 </html>

@@ -68,3 +68,11 @@ obj/
 *.log
 *.sqlite3
 *.db
+# Site data files are content, not datasets
+!data/*.json
+
+# Full Boska font package: licence forbids serving it publicly; the site uses Assets/fonts only
+Assets/Boska_Complete/
+
+# Internal design notes, not part of the published site
+Design Docs/

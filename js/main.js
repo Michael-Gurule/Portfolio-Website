@@ -1,168 +1,77 @@
 /**
  * michaelgurule.com - Main JavaScript
- * Features: Scroll Animations, Navigation, Interactions
+ * Features: Intro, Scroll Animations, Navigation, Data-driven Sections, Copy Email
  */
 
 // ========================================
-// WIRE MESH BACKGROUND
+// INTRO
+// Decorative overlay: fade in, hold, then the name flies (FLIP) to the hero H1.
+// The head script decides whether it plays by setting html.intro-active.
 // ========================================
-class WireMesh {
-    constructor(canvas) {
-        this.canvas = canvas;
-        this.ctx = canvas.getContext('2d');
-        this.animationId = null;
-        this.isVisible = !document.hidden;
-        this.t = 0;
+class Intro {
+    constructor() {
+        this.root = document.documentElement;
+        this.overlay = document.querySelector('.intro');
+        this.name = document.querySelector('.intro-name');
+        this.title = document.querySelector('.intro-title');
+        this.target = document.querySelector('.hero-title');
+        this.animations = [];
+        this.skipEvents = ['pointerdown', 'keydown', 'wheel', 'touchstart', 'scroll'];
+        this.skip = () => this.finish();
 
-        // Each ribbon is a set of parallel lines sharing the same wave shape
-        this.config = {
-            ribbons: [
-                {
-                    lineCount: 18,
-                    spread: 90,
-                    cp: [
-                        { x: 0.0, yBase: 0.55, yAmp: 0.18, phase: 0.0, freq: 0.55 },
-                        { x: 0.25, yBase: 0.30, yAmp: 0.22, phase: 1.1, freq: 0.50 },
-                        { x: 0.50, yBase: 0.62, yAmp: 0.20, phase: 2.3, freq: 0.45 },
-                        { x: 0.75, yBase: 0.25, yAmp: 0.24, phase: 0.7, freq: 0.60 },
-                        { x: 1.0, yBase: 0.58, yAmp: 0.18, phase: 1.8, freq: 0.50 },
-                    ],
-                    colorA: [155, 168, 171],
-                    colorB: [37, 55, 69],
-                    baseAlpha: 0.18,
-                    speed: 0.28,
-                },
-                {
-                    lineCount: 14,
-                    spread: 70,
-                    cp: [
-                        { x: 0.0, yBase: 0.72, yAmp: 0.20, phase: 2.5, freq: 0.40 },
-                        { x: 0.30, yBase: 0.42, yAmp: 0.26, phase: 0.4, freq: 0.55 },
-                        { x: 0.55, yBase: 0.78, yAmp: 0.18, phase: 3.1, freq: 0.50 },
-                        { x: 0.80, yBase: 0.38, yAmp: 0.22, phase: 1.5, freq: 0.45 },
-                        { x: 1.0, yBase: 0.65, yAmp: 0.20, phase: 2.0, freq: 0.60 },
-                    ],
-                    colorA: [74, 92, 106],
-                    colorB: [17, 33, 45],
-                    baseAlpha: 0.13,
-                    speed: 0.20,
-                },
-                {
-                    lineCount: 12,
-                    spread: 60,
-                    cp: [
-                        { x: 0.0, yBase: 0.35, yAmp: 0.16, phase: 1.0, freq: 0.60 },
-                        { x: 0.20, yBase: 0.65, yAmp: 0.20, phase: 2.8, freq: 0.48 },
-                        { x: 0.50, yBase: 0.40, yAmp: 0.22, phase: 0.2, freq: 0.52 },
-                        { x: 0.80, yBase: 0.70, yAmp: 0.18, phase: 1.6, freq: 0.44 },
-                        { x: 1.0, yBase: 0.45, yAmp: 0.16, phase: 3.4, freq: 0.56 },
-                    ],
-                    colorA: [204, 208, 207],
-                    colorB: [37, 55, 69],
-                    baseAlpha: 0.09,
-                    speed: 0.35,
-                },
-            ],
-        };
-
+        if (!this.root.classList.contains('intro-active')) return;
+        if (!this.overlay || !this.name || !this.target || window.scrollY > 0) {
+            this.finish();
+            return;
+        }
         this.init();
     }
 
     init() {
-        this.resize();
-        this.bindEvents();
-        this.animate();
+        this.skipEvents.forEach(type => window.addEventListener(type, this.skip, { passive: true }));
+
+        const fadeIn = this.overlay.getAnimations ? this.overlay.getAnimations()[0] : null;
+        const faded = fadeIn ? fadeIn.finished : Promise.resolve();
+
+        faded
+            .then(() => new Promise(resolve => { this.holdTimer = setTimeout(resolve, 600); }))
+            .then(() => document.fonts.ready)
+            .then(() => this.fly())
+            .catch(() => { }); // fadeIn.finished rejects when a skip cancels it
     }
 
-    resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+    fly() {
+        if (this.done) return;
+
+        const from = this.name.getBoundingClientRect();
+        const to = this.target.getBoundingClientRect();
+        const scale = parseFloat(getComputedStyle(this.target).fontSize) /
+            parseFloat(getComputedStyle(this.name).fontSize);
+        const move = `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${scale})`;
+        const timing = { duration: 500, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'forwards' };
+
+        this.root.classList.add('intro-flying');
+        this.animations = [
+            this.name.animate([{ transform: 'none' }, { transform: move }], timing),
+            this.title.animate([{ opacity: 1 }, { opacity: 0 }], { ...timing, duration: 250 }),
+            this.overlay.animate([
+                { backgroundColor: getComputedStyle(this.overlay).backgroundColor, backdropFilter: 'blur(18px)', webkitBackdropFilter: 'blur(18px)' },
+                { backgroundColor: 'rgba(255, 255, 255, 0)', backdropFilter: 'blur(0px)', webkitBackdropFilter: 'blur(0px)' }
+            ], timing)
+        ];
+
+        Promise.all(this.animations.map(a => a.finished))
+            .then(() => this.finish())
+            .catch(() => { });
     }
 
-    bindEvents() {
-        window.addEventListener('resize', () => this.resize());
-        document.addEventListener('visibilitychange', () => {
-            this.isVisible = !document.hidden;
-            if (this.isVisible) this.animate();
-        });
-    }
-
-    catmullRomY(cp, u, W, H, time, speed) {
-        const pts = cp.map(c => ({
-            x: c.x * W,
-            y: c.yBase * H + Math.sin(time * speed * c.freq + c.phase) * c.yAmp * H,
-        }));
-
-        const n = pts.length - 1;
-        const seg = Math.min(Math.floor(u * n), n - 1);
-        const t = u * n - seg;
-
-        const p0 = pts[Math.max(seg - 1, 0)];
-        const p1 = pts[seg];
-        const p2 = pts[Math.min(seg + 1, n)];
-        const p3 = pts[Math.min(seg + 2, n)];
-
-        const t2 = t * t;
-        const t3 = t2 * t;
-        const y = 0.5 * (
-            (2 * p1.y) +
-            (-p0.y + p2.y) * t +
-            (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t2 +
-            (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t3
-        );
-        return y;
-    }
-
-    draw() {
-        const { ctx, canvas, t } = this;
-        const W = canvas.width;
-        const H = canvas.height;
-
-        ctx.clearRect(0, 0, W, H);
-
-        const SEGMENTS = 120;
-
-        this.config.ribbons.forEach(ribbon => {
-            const { lineCount, spread, cp, colorA, colorB, baseAlpha, speed } = ribbon;
-
-            for (let li = 0; li < lineCount; li++) {
-                const offsetFrac = (li / (lineCount - 1)) - 0.5;
-                const yOffset = offsetFrac * spread;
-
-                const edgeFade = 1 - Math.abs(offsetFrac) * 1.6;
-                const alpha = Math.max(0, baseAlpha * edgeFade);
-
-                const blend = Math.abs(offsetFrac) * 2;
-                const r = Math.round(colorA[0] + (colorB[0] - colorA[0]) * blend);
-                const g = Math.round(colorA[1] + (colorB[1] - colorA[1]) * blend);
-                const b = Math.round(colorA[2] + (colorB[2] - colorA[2]) * blend);
-
-                ctx.beginPath();
-                for (let si = 0; si <= SEGMENTS; si++) {
-                    const u = si / SEGMENTS;
-                    const x = u * W;
-                    const y = this.catmullRomY(cp, u, W, H, t, speed) + yOffset;
-
-                    if (si === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                }
-
-                ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
-                ctx.lineWidth = 0.75;
-                ctx.stroke();
-            }
-        });
-    }
-
-    animate() {
-        if (!this.isVisible) return;
-        this.t += 0.012;
-        this.draw();
-        this.animationId = requestAnimationFrame(() => this.animate());
-    }
-
-    destroy() {
-        if (this.animationId) cancelAnimationFrame(this.animationId);
+    finish() {
+        if (this.done) return;
+        this.done = true;
+        clearTimeout(this.holdTimer);
+        this.skipEvents.forEach(type => window.removeEventListener(type, this.skip));
+        this.animations.forEach(a => a.cancel());
+        this.root.classList.remove('intro-active', 'intro-flying');
     }
 }
 
@@ -171,7 +80,6 @@ class WireMesh {
 // ========================================
 class ScrollAnimations {
     constructor() {
-        this.elements = document.querySelectorAll('.fade-in');
         this.init();
     }
 
@@ -191,7 +99,12 @@ class ScrollAnimations {
             });
         }, observerOptions);
 
-        this.elements.forEach(element => {
+        this.observe(document);
+    }
+
+    // Watches .fade-in elements under root, including ones rendered later
+    observe(root) {
+        root.querySelectorAll('.fade-in:not(.visible)').forEach(element => {
             this.observer.observe(element);
         });
     }
@@ -217,9 +130,7 @@ class Navigation {
     }
 
     bindEvents() {
-        // Scroll handling for nav background
         window.addEventListener('scroll', () => {
-            this.handleScroll();
             this.updateActiveLink();
         });
 
@@ -255,14 +166,6 @@ class Navigation {
                 }
             });
         });
-    }
-
-    handleScroll() {
-        if (window.scrollY > 50) {
-            this.nav.classList.add('scrolled');
-        } else {
-            this.nav.classList.remove('scrolled');
-        }
     }
 
     updateActiveLink() {
@@ -303,130 +206,353 @@ class Navigation {
 }
 
 // ========================================
-// COUNTER ANIMATION
+// DATA-DRIVEN SECTIONS
+// Technical ecosystem (data/stack.json) and projects (data/projects.json)
 // ========================================
-class CounterAnimation {
-    constructor() {
-        this.counters = document.querySelectorAll('.stat-value[data-target]');
-        this.animated = new Set();
-        this.init();
+const ARROW_PATH = 'M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3';
+
+function createElement(tag, className, text) {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    if (text !== undefined) el.textContent = text;
+    return el;
+}
+
+function createArrow(size) {
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg');
+    const path = document.createElementNS(ns, 'path');
+    svg.setAttribute('width', size);
+    svg.setAttribute('height', size);
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '1.5');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    path.setAttribute('d', ARROW_PATH);
+    svg.appendChild(path);
+    return svg;
+}
+
+class DataSections {
+    constructor(animations) {
+        this.animations = animations;
+        this.stack = document.querySelector('[data-stack-source]');
+        this.projects = document.querySelector('[data-projects-source]');
     }
 
-    init() {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5
-        };
-
-        this.observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !this.animated.has(entry.target)) {
-                    this.animateCounter(entry.target);
-                    this.animated.add(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        this.counters.forEach(counter => {
-            this.observer.observe(counter);
+    load() {
+        const jobs = [];
+        if (this.stack) {
+            jobs.push(this.fetchJSON(this.stack.dataset.stackSource).then(data => this.renderStack(data)));
+        }
+        if (this.projects) {
+            jobs.push(this.fetchJSON(this.projects.dataset.projectsSource).then(data => this.renderProjects(data)));
+        }
+        return Promise.allSettled(jobs).then(results => {
+            results.filter(r => r.status === 'rejected').forEach(r => console.error(r.reason));
+            this.animations.observe(document);
+            this.restoreHashPosition();
         });
     }
 
-    animateCounter(element) {
-        const target = parseInt(element.getAttribute('data-target'), 10);
-        const duration = 2000;
-        const startTime = performance.now();
+    fetchJSON(url) {
+        return fetch(url).then(response => {
+            if (!response.ok) throw new Error(`Could not load ${url} (${response.status})`);
+            return response.json();
+        });
+    }
 
-        const updateCounter = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
+    renderStack(data) {
+        data.groups.forEach(group => {
+            const category = createElement('div', 'tech-category');
+            category.append(
+                createElement('h4', null, group.name),
+                createElement('p', null, group.items.join(', '))
+            );
+            this.stack.appendChild(category);
+        });
+    }
 
-            // Easing function
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const currentValue = Math.floor(target * easeOutQuart);
+    renderProjects(data) {
+        data.projects.forEach((project, index) => {
+            const number = String(index + 1).padStart(2, '0');
+            const delay = Math.min(index, 4);
+            const card = createElement('article', `project-card fade-in${delay ? ` fade-in-delay-${delay}` : ''}`);
+            card.dataset.reveal = 'up';
 
-            element.textContent = currentValue;
+            const head = createElement('div', 'project-head');
+            head.append(
+                createElement('p', 'project-label', `${number} · ${project.label}`),
+                createElement('h3', 'project-title', project.title)
+            );
+            card.appendChild(head);
 
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.textContent = target;
+            if (project.figure) {
+                card.classList.add('has-figure');
+                const figure = createElement('p', 'project-figure');
+                figure.append(
+                    this.createFigureValue(project.figure.value),
+                    createElement('span', 'project-figure-caption mono-label', project.figure.caption)
+                );
+                card.appendChild(figure);
             }
-        };
 
-        requestAnimationFrame(updateCounter);
+            const body = createElement('div', 'project-body');
+            project.description.forEach(paragraph => {
+                body.appendChild(createElement('p', 'project-description', paragraph));
+            });
+
+            const tags = createElement('div', 'project-tags');
+            project.tags.forEach(tag => tags.appendChild(createElement('span', 'tag', tag)));
+            body.appendChild(tags);
+
+            const link = createElement('a', 'project-link', 'View on GitHub');
+            link.href = project.url;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.appendChild(createArrow(16));
+            body.appendChild(link);
+
+            card.appendChild(body);
+            this.projects.appendChild(card);
+        });
+    }
+
+    // Boska draws ×, +, < light and off the baseline, so set them in the body face
+    createFigureValue(value) {
+        const el = createElement('span', 'project-figure-value');
+        value.split(/([×+<>~])/).filter(Boolean).forEach(part => {
+            el.appendChild(/^[×+<>~]$/.test(part)
+                ? createElement('span', 'figure-symbol', part)
+                : document.createTextNode(part));
+        });
+        return el;
+    }
+
+    // Content above an anchored section just grew, so land on the anchor again
+    restoreHashPosition() {
+        if (!location.hash) return;
+        const target = document.getElementById(location.hash.slice(1));
+        if (target) target.scrollIntoView({ behavior: 'auto' });
     }
 }
 
 // ========================================
-// CONTACT FORM
+// COPY EMAIL
 // ========================================
-class ContactForm {
+class CopyEmail {
     constructor() {
-        this.form = document.querySelector('.contact-form');
-        if (this.form) {
-            this.init();
-        }
-    }
-
-    init() {
-        this.form.addEventListener('submit', (e) => {
-            this.handleSubmit(e);
+        this.buttons = document.querySelectorAll('.btn-copy');
+        this.buttons.forEach(button => {
+            button.addEventListener('click', () => this.copy(button));
         });
     }
 
-    handleSubmit(e) {
-        const submitBtn = this.form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
+    copy(button) {
+        const status = button.parentElement.querySelector('[role="status"]');
+        const text = button.dataset.copy;
+        const write = navigator.clipboard && window.isSecureContext
+            ? navigator.clipboard.writeText(text)
+            : Promise.reject(new Error('Clipboard unavailable'));
 
-        // Show loading state
-        submitBtn.innerHTML = `
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spinner">
-        <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="32">
-          <animate attributeName="stroke-dashoffset" dur="1s" values="32;0" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-      Sending...
-    `;
-        submitBtn.disabled = true;
-
-        // The form will submit normally to Formspree
-        // This just shows a loading state
+        write.then(() => {
+            button.textContent = 'Copied';
+            button.classList.add('is-copied');
+            if (status) status.textContent = 'Email address copied';
+            clearTimeout(button.resetTimer);
+            button.resetTimer = setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+                if (status) status.textContent = '';
+            }, 2000);
+        }).catch(() => {
+            // Fall back to the mail client
+            window.location.href = `mailto:${text}`;
+        });
     }
+}
+
+// ========================================
+// BIO CARD
+// ========================================
+// The "full story" link still points at about/. A plain click opens the same
+// text in a card that grows out of the About block (the intro's fly-in, run
+// the other way) and shrinks back into it on close. #bio keeps the back
+// button closing the card instead of leaving the site.
+class BioCard {
+    constructor() {
+        this.link = document.querySelector('[data-bio-open]');
+        this.dialog = document.querySelector('.bio-dialog');
+        if (!this.link || !this.dialog) return;
+
+        this.source = document.querySelector('.about-content');
+        this.backdrop = this.dialog.querySelector('.bio-backdrop');
+        this.card = this.dialog.querySelector('.bio-card');
+        this.closeButton = this.dialog.querySelector('.bio-close');
+        this.body = this.dialog.querySelector('.bio-body');
+        this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        this.animations = [];
+
+        this.link.setAttribute('aria-haspopup', 'dialog');
+        this.link.setAttribute('aria-controls', this.dialog.id);
+        ['pointerenter', 'focus'].forEach(type => this.link.addEventListener(type, () => this.load()));
+        this.link.addEventListener('click', event => this.onClick(event));
+        this.closeButton.addEventListener('click', () => this.requestClose());
+        this.backdrop.addEventListener('click', () => this.requestClose());
+        this.dialog.addEventListener('cancel', event => {
+            event.preventDefault();
+            this.requestClose();
+        });
+        this.dialog.addEventListener('close', () => this.onClosed());
+        window.addEventListener('popstate', () => this.syncWithHash());
+
+        this.syncWithHash();
+    }
+
+    load() {
+        if (!this.loading) {
+            this.loading = fetch(this.link.href)
+                .then(response => {
+                    if (!response.ok) throw new Error(`Bio request failed: ${response.status}`);
+                    return response.text();
+                })
+                .then(html => {
+                    const article = new DOMParser().parseFromString(html, 'text/html').querySelector('.prose');
+                    if (!article) throw new Error('Bio content missing');
+                    const title = article.querySelector('h1');
+                    if (title) title.id = 'bio-title';
+                    this.body.replaceChildren(...article.childNodes);
+                });
+            this.loading.catch(() => { this.loading = null; });
+        }
+        return this.loading;
+    }
+
+    onClick(event) {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        if (this.isOpen) return;
+
+        this.load()
+            .then(() => {
+                history.pushState({ bio: true }, '', '#bio');
+                this.open();
+            })
+            .catch(() => { window.location.href = this.link.href; });
+    }
+
+    // Back, forward, and a direct visit to #bio all land here
+    syncWithHash() {
+        const wantsOpen = location.hash === '#bio';
+        if (wantsOpen && !this.isOpen) {
+            this.load().then(() => this.open()).catch(() => { });
+        } else if (!wantsOpen && this.isOpen) {
+            this.close();
+        }
+    }
+
+    requestClose() {
+        if (!this.isOpen) return;
+        if (history.state && history.state.bio) {
+            history.back(); // popstate closes the card
+        } else {
+            history.replaceState(null, '', location.pathname + location.search);
+            this.close();
+        }
+    }
+
+    open() {
+        if (this.isOpen) return;
+        this.isOpen = true;
+
+        if (!this.dialog.open) {
+            this.returnFocus = document.activeElement;
+            const root = document.documentElement;
+            root.style.setProperty('--scrollbar-gap', `${window.innerWidth - root.clientWidth}px`);
+            root.classList.add('bio-open');
+            this.dialog.showModal();
+            this.body.scrollTop = 0;
+        }
+        this.morph(true);
+    }
+
+    close() {
+        if (!this.isOpen) return;
+        this.isOpen = false;
+
+        this.morph(false).then(() => {
+            if (!this.isOpen) this.dialog.close(); // unless reopened mid-close
+        });
+    }
+
+    // Runs however the dialog ended up closed, including a browser-forced close
+    onClosed() {
+        this.isOpen = false;
+        this.animations.forEach(animation => animation.cancel());
+        document.documentElement.classList.remove('bio-open');
+        if (location.hash === '#bio') history.replaceState(null, '', location.pathname + location.search);
+        if (this.returnFocus) this.returnFocus.focus({ preventScroll: true });
+    }
+
+    // Keyframes are written for opening; closing plays the same frames backwards
+    // so the ease-out still lands softly on the About block.
+    morph(opening) {
+        this.animations.forEach(animation => animation.cancel());
+
+        const reduced = this.reducedMotion.matches || !this.source;
+        const timing = {
+            duration: reduced ? 160 : (opening ? 560 : 440),
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            fill: 'both'
+        };
+        const fade = [{ opacity: 0 }, { opacity: 1 }];
+        let cardFrames = fade;
+        let contentFrames = fade;
+
+        if (!reduced) {
+            const from = this.source.getBoundingClientRect();
+            const to = this.card.getBoundingClientRect();
+            const collapsed = `translate(${from.left - to.left}px, ${from.top - to.top}px) ` +
+                `scale(${from.width / to.width}, ${from.height / to.height})`;
+            cardFrames = [
+                { transform: collapsed, opacity: 0 },
+                { opacity: 1, offset: 0.2 },
+                { transform: 'none', opacity: 1 }
+            ];
+            // Text stays hidden until the card has nearly finished stretching
+            contentFrames = [{ opacity: 0 }, { opacity: 0, offset: 0.55 }, { opacity: 1 }];
+        }
+
+        const play = (element, frames) => element.animate(opening ? frames : reverseFrames(frames), timing);
+        this.animations = [
+            play(this.backdrop, fade),
+            play(this.card, cardFrames),
+            play(this.body, contentFrames),
+            play(this.closeButton, contentFrames)
+        ];
+
+        return Promise.all(this.animations.map(animation => animation.finished)).catch(() => { });
+    }
+}
+
+function reverseFrames(frames) {
+    return frames.slice().reverse().map(frame =>
+        'offset' in frame ? { ...frame, offset: 1 - frame.offset } : frame);
 }
 
 // ========================================
 // INITIALIZATION
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Intro splash
-    const splash = document.getElementById('intro-splash');
-    const heroContent = document.querySelector('.hero-content');
-    if (splash && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        setTimeout(() => {
-            splash.classList.add('fade-out');
-            splash.addEventListener('transitionend', () => {
-                splash.remove();
-                if (heroContent) heroContent.classList.add('hero-visible');
-            }, { once: true });
-        }, 1800);
-    } else {
-        if (splash) splash.remove();
-        if (heroContent) heroContent.classList.add('hero-visible');
-    }
-
-    // Initialize wire mesh background
-    const dotGridCanvas = document.getElementById('dot-grid-canvas');
-    if (dotGridCanvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        new WireMesh(dotGridCanvas);
-    }
-
-    // Initialize other components
-    new ScrollAnimations();
+    new Intro();
+    const animations = new ScrollAnimations();
     new Navigation();
-    new CounterAnimation();
-    new ContactForm();
+    new DataSections(animations).load();
+    new CopyEmail();
+    new BioCard();
 });
 
 // Reduce motion for users who prefer it

@@ -1,0 +1,55 @@
+{
+  "projects": [
+    {
+      "title": "SENTINEL",
+      "label": "Multi-sensor positioning",
+      "description": [
+        "Fuses TDOA/FDOA positioning, thermal imaging, and telemetry through Kalman filtering for real-time tracking across asynchronous feeds. Optimizing sensor placement geometry produced a 40x accuracy improvement over baseline in GPS-denied environments, with no change to the estimator.",
+        "The gain came from treating placement as an optimization over the geometry of the estimation problem. Positioning error is bounded below by the Cramér-Rao bound, and geometric dilution of precision is the conditioning of the Fisher information matrix. Improving the geometry moved the bound. The estimator stayed the same."
+      ],
+      "tags": ["Sensor Fusion", "TDOA/FDOA", "Kalman Filtering", "Estimation Bounds"],
+      "url": "https://github.com/michael-gurule/sentinel",
+      "figure": { "value": "40×", "caption": "accuracy gain, same estimator" }
+    },
+    {
+      "title": "CONSTELLATION",
+      "label": "Satellite fleet health",
+      "description": [
+        "Anomaly detection on live ISS telemetry using an Isolation Forest and LSTM autoencoder ensemble, with a Temporal Fusion Transformer for forecasting and Cox proportional hazards for time to failure. Built around sparse labels and seasonal load variance."
+      ],
+      "tags": ["Anomaly Detection", "Survival Analysis", "Orbital Telemetry", "Time Series"],
+      "url": "https://github.com/michael-gurule/constellation",
+      "figure": null
+    },
+    {
+      "title": "MERIDIAN",
+      "label": "Portfolio optimization under regime change",
+      "description": [
+        "Regime detection and covariance estimation with GARCH(1,1) return forecasting across 25+ assets and ten years of daily data. Allocation conditions on the detected regime rather than assuming a single covariance structure, under realistic transaction cost constraints."
+      ],
+      "tags": ["Regime Detection", "GARCH", "Convex Optimization", "Non-Stationarity"],
+      "url": "https://github.com/Michael-Gurule/MERIDIAN",
+      "figure": { "value": "25+", "caption": "assets, ten years of data" }
+    },
+    {
+      "title": "HYPERION",
+      "label": "Multi-agent reinforcement learning",
+      "description": [
+        "Ray RLlib and PyTorch coordinating autonomous UAV swarms, with physics-informed neural networks for trajectory simulation and graph neural networks for agent communication. Sub-100ms inference latency and an 85% interception rate across 20+ agents."
+      ],
+      "tags": ["Multi-Agent RL", "Physics-Informed Neural Networks", "Graph Neural Networks"],
+      "url": "https://github.com/Michael-Gurule/hyperion",
+      "figure": { "value": "<100 ms", "caption": "inference latency" }
+    },
+    {
+      "title": "ADELON",
+      "label": "Marketing mix modeling",
+      "description": [
+        "A Bayesian marketing mix model built with PyMC. The model breaks revenue into the components that drive it, including baseline, trend, seasonality, media spend across five channels, and external controls, then uses the fitted response curves to optimize budget allocation."
+      ],
+      "tags": ["Bayesian Inference", "Latent Variable Modeling", "DAGs"],
+      "url": "https://github.com/Michael-Gurule/adelon",
+      "figure": null
+    }
+  ]
+}

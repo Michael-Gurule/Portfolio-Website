@@ -1,0 +1,16 @@
+{
+  "groups": [
+    {
+      "name": "Modeling",
+      "items": ["PyTorch", "TensorFlow", "scikit-learn", "XGBoost", "PyMC", "JAX", "FastAPI", "Streamlit"]
+    },
+    {
+      "name": "Cloud and Systems",
+      "items": ["AWS (SageMaker, MSK, Managed Flink, Glue, Athena, Neptune, EventBridge)", "Kafka", "Spark", "Docker", "Kubernetes", "CI/CD"]
+    },
+    {
+      "name": "Applied AI",
+      "items": ["Frontier APIs", "open-weight models", "Model Context Protocol", "vector orchestration", "knowledge graphs"]
+    }
+  ]
+}
