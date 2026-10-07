@@ -7,4 +7,10 @@ export default defineConfig({
     build: {
         format: 'directory',
     },
+    markdown: {
+        // Code blocks in articles, colored to sit on the light page background
+        shikiConfig: {
+            theme: 'github-light',
+        },
+    },
 });

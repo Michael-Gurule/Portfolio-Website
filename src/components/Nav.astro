@@ -3,7 +3,7 @@
 // #anchors, which main.js relies on for scroll-spy and smooth scrolling.
 interface Props {
     onHome?: boolean;
-    active?: 'about';
+    active?: 'about' | 'writing';
 }
 
 const { onHome = false, active } = Astro.props;

@@ -1,0 +1,18 @@
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
+
+// Articles live in src/content/writing/<slug>.md and publish at /writing/<slug>/
+const writing = defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/writing' }),
+    schema: z.object({
+        title: z.string(),
+        date: z.coerce.date(),
+        summary: z.string(),
+        tags: z.array(z.string()).optional(),
+        updated: z.coerce.date().optional(),
+        draft: z.boolean().default(false),
+    }),
+});
+
+export const collections = { writing };
