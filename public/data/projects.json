@@ -1,14 +1,13 @@
 {
   "projects": [
     {
-      "title": "SENTINEL",
+      "title": "LOCANT",
       "label": "Multi-sensor positioning",
       "description": [
-        "Fuses TDOA/FDOA positioning, thermal imaging, and telemetry through Kalman filtering for real-time tracking across asynchronous feeds. Optimizing sensor placement geometry produced a 40x accuracy improvement over baseline in GPS-denied environments, with no change to the estimator.",
-        "The gain came from treating placement as an optimization over the geometry of the estimation problem. Positioning error is bounded below by the Cramér-Rao bound, and geometric dilution of precision is the conditioning of the Fisher information matrix. Improving the geometry moved the bound. The estimator stayed the same."
+        "Fuses asynchronous RF positioning (TDOA/FDOA), thermal imaging, and telemetry streams via an Extended Kalman Filter (EKF) for real-time target tracking."
       ],
       "tags": ["Sensor Fusion", "TDOA/FDOA", "Kalman Filtering", "Estimation Bounds"],
-      "url": "https://github.com/michael-gurule/sentinel",
+      "url": "https://github.com/michael-gurule/locant",
       "figure": { "value": "40×", "caption": "accuracy gain, same estimator" }
     },
     {
