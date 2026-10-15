@@ -1,0 +1,74 @@
+---
+import { render } from 'astro:content';
+import { Image } from 'astro:assets';
+import 'katex/dist/katex.min.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getArticles, formatDate, isoDate, readingTime, type Article } from '../../lib/writing';
+
+export async function getStaticPaths() {
+    const articles = await getArticles();
+    return articles.map(article => ({ params: { slug: article.id }, props: { article } }));
+}
+
+interface Props {
+    article: Article;
+}
+
+const { article } = Astro.props;
+const { title, date, updated, summary, hero, heroAlt, draft } = article.data;
+const { Content } = await render(article);
+---
+
+<BaseLayout
+    title={`${title} | Michael Gurule`}
+    description={summary}
+    path={`/writing/${article.id}/`}
+    ogType="article"
+    navActive="writing"
+    backToTop="#top"
+>
+    <Fragment slot="head">
+        <meta property="article:published_time" content={isoDate(date)}>
+        {updated && <meta property="article:modified_time" content={isoDate(updated)}>}
+        {draft && <meta name="robots" content="noindex">}
+    </Fragment>
+
+    <main class="page" id="top">
+        <div class="container">
+            <article class="article">
+                <header class="article-header">
+                    <h1 class="article-title">{title}</h1>
+                    <p class="article-meta mono-label">
+                        <time datetime={isoDate(date)}>{formatDate(date)}</time>
+                        <span aria-hidden="true">&middot;</span>
+                        <span>{readingTime(article.body)}</span>
+                        {updated && (
+                            <>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>Updated <time datetime={isoDate(updated)}>{formatDate(updated)}</time></span>
+                            </>
+                        )}
+                        {draft && (
+                            <>
+                                <span aria-hidden="true">&middot;</span>
+                                <span class="article-draft">Draft</span>
+                            </>
+                        )}
+                    </p>
+                    <p class="article-author">By <a href="/about/">Michael Gurule</a></p>
+                </header>
+
+                {hero && (
+                    <figure class="article-hero">
+                        <Image src={hero} alt={heroAlt} widths={[680, 1360]} sizes="(min-width: 46em) 680px, 100vw"
+                            loading="eager" fetchpriority="high" />
+                    </figure>
+                )}
+
+                <div class="article-body prose">
+                    <Content />
+                </div>
+            </article>
+        </div>
+    </main>
+</BaseLayout>

@@ -1,0 +1,35 @@
+---
+// Article card used on the home page and the /writing index
+import { Image } from 'astro:assets';
+import { formatDate, isoDate, readingTime, type Article } from '../lib/writing';
+
+interface Props {
+    article: Article;
+    /** Heading level for the title, so it nests under the section heading */
+    headingLevel?: 2 | 3;
+    /** Extra classes, e.g. the home page's fade-in reveal */
+    class?: string;
+}
+
+const { article, headingLevel = 2, class: className } = Astro.props;
+const { title, date, summary, hero, heroAlt, draft } = article.data;
+const Heading = `h${headingLevel}`;
+---
+
+<a class:list={['article-card', className]} href={`/writing/${article.id}/`} data-reveal="up">
+    {hero && (
+        <div class="article-card-media">
+            <Image src={hero} alt={heroAlt} widths={[480, 800]} sizes="(min-width: 52em) 33vw, 100vw" />
+        </div>
+    )}
+    <div class="article-card-body">
+        <p class="article-card-meta mono-label">
+            <time datetime={isoDate(date)}>{formatDate(date)}</time>
+            <span aria-hidden="true">&middot;</span>
+            <span>{readingTime(article.body)}</span>
+            {draft && <span class="writing-draft-inline">Draft</span>}
+        </p>
+        <Heading class="article-card-title"><span>{title}</span></Heading>
+        <p class="article-card-summary">{summary}</p>
+    </div>
+</a>

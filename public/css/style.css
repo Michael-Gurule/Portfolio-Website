@@ -1207,6 +1207,82 @@ html.bio-open {
     margin-top: var(--space-12);
 }
 
+/* Article cards: home page and /writing index */
+.article-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+}
+
+.article-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.article-card:hover {
+    box-shadow: var(--shadow-card-hover);
+}
+
+.article-card-media {
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid var(--rule);
+    background: var(--canvas);
+}
+
+.article-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.article-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+}
+
+.article-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.writing-draft-inline {
+    margin-left: var(--space-2);
+    color: var(--accent-strong);
+}
+
+.article-card-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 2.2vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.25;
+    text-wrap: balance;
+}
+
+.article-card-title span {
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0 1px;
+    transition: background-size var(--transition-slow);
+}
+
+.article-card:hover .article-card-title span {
+    background-size: 100% 1px;
+}
+
+.article-card-summary {
+    font-size: 0.96875rem;
+    line-height: 1.6;
+}
+
 /* ========================================
    13. CONTACT SECTION
    ======================================== */
@@ -1379,6 +1455,229 @@ html.bio-open {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
+}
+
+/* ========================================
+   15b. WRITING INDEX & ARTICLES
+   Article styles are scoped to .article so no other page changes.
+   ======================================== */
+.page-title {
+    margin-bottom: var(--space-6);
+}
+
+.writing-empty {
+    color: var(--muted);
+}
+
+/* Only ever shown in dev, since drafts are left out of production builds */
+.writing-draft {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--accent-strong);
+}
+
+.article {
+    max-width: var(--container-reading);
+}
+
+.article-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--rule);
+}
+
+.article-title {
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    line-height: 1.05;
+    text-wrap: balance;
+    margin-bottom: var(--space-6);
+}
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+}
+
+.article-draft {
+    color: var(--accent-strong);
+}
+
+.article-author {
+    margin-top: var(--space-3);
+    font-size: 0.9375rem;
+}
+
+.article-author a {
+    color: var(--ink);
+    font-weight: 500;
+    border-bottom: 1px solid var(--accent);
+    transition: border-color var(--transition-base);
+}
+
+.article-author a:hover {
+    border-color: var(--ink);
+}
+
+.article-body h2 {
+    font-size: clamp(1.75rem, 3vw, 2.125rem);
+    line-height: 1.15;
+    margin: var(--space-12) 0 var(--space-4);
+}
+
+.article-body h3 {
+    font-size: 1.1875rem;
+    margin: var(--space-8) 0 var(--space-3);
+}
+
+.article-body > :first-child {
+    margin-top: 0;
+}
+
+.article-body ul,
+.article-body ol {
+    margin: 0 0 var(--space-6);
+    padding-left: 1.25em;
+    font-size: 1.125rem;
+    line-height: 1.7;
+}
+
+.article-body ul {
+    list-style: disc;
+}
+
+.article-body ol {
+    list-style: decimal;
+}
+
+.article-body li {
+    margin-bottom: var(--space-2);
+}
+
+.article-body li::marker {
+    color: var(--muted);
+}
+
+.article-body a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color var(--transition-base);
+}
+
+.article-body a:hover {
+    color: var(--accent-strong);
+}
+
+.article-body strong {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.article-body blockquote {
+    margin: var(--space-8) 0;
+    padding-left: var(--space-6);
+    border-left: 2px solid var(--accent);
+}
+
+.article-body blockquote p {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    line-height: 1.45;
+    color: var(--ink);
+}
+
+.article-body :not(pre) > code {
+    font-size: 0.875em;
+    padding: 0.1em 0.35em;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+}
+
+.article-body pre {
+    margin: 0 0 var(--space-6);
+    padding: var(--space-5);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+}
+
+.article-body img {
+    margin: var(--space-8) 0;
+    border-radius: var(--radius-lg);
+}
+
+.article-hero {
+    margin: 0 0 var(--space-12);
+}
+
+.article-hero img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+}
+
+/* Standalone Markdown images become figures; the image title becomes the caption */
+.article-body figure {
+    margin: var(--space-10) 0;
+}
+
+.article-body figure img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border: 1px solid var(--rule);
+}
+
+.article-body figcaption {
+    margin-top: var(--space-3);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+/* Math (KaTeX). Display equations scroll sideways on narrow screens instead of overflowing */
+.article-body .katex {
+    font-size: 1.08em;
+    color: var(--ink);
+}
+
+.article-body .katex-display {
+    margin: var(--space-8) 0;
+    padding: var(--space-1) 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.article-body hr {
+    margin: var(--space-12) 0;
+    border: 0;
+    border-top: 1px solid var(--rule);
+}
+
+.article-body table {
+    width: 100%;
+    margin: 0 0 var(--space-6);
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+}
+
+.article-body th,
+.article-body td {
+    padding: var(--space-2) var(--space-3);
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+}
+
+.article-body th {
+    color: var(--ink);
+    font-weight: 600;
 }
 
 /* ========================================
@@ -1608,6 +1907,10 @@ html.bio-open {
 
     .decisions {
         gap: var(--space-10);
+    }
+
+    .article-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .project-card.has-figure {

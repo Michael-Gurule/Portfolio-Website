@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticles } from '../../lib/writing';
+
+const articles = await getArticles();
+---
+
+<BaseLayout
+    title="Writing | Michael Gurule, Applied Scientist and ML Architect"
+    description="Model breakdowns, practical guides, and notes on where data science methods hold, where they break, and what to build around them."
+    path="/writing/"
+    navActive="writing"
+    backToTop="#top"
+>
+    <main class="page" id="top">
+        <div class="container">
+            <h1 class="page-title">Writing</h1>
+            <p class="section-subtitle">
+                Model breakdowns, practical guides, and how I approach problems in data.<br>
+                Most of it comes back to where methods hold, where they break, and what to build around them.
+            </p>
+
+            {articles.length > 0 ? (
+                <div class="article-grid">
+                    {articles.map(article => <ArticleCard article={article} />)}
+                </div>
+            ) : (
+                <p class="writing-empty">Nothing published here yet.</p>
+            )}
+        </div>
+    </main>
+</BaseLayout>

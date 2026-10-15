@@ -1,0 +1,52 @@
+# Matplotlib style for article figures on michaelgurule.com
+# Matches the site palette: ink axes, quiet gray grid, neutral series, one red highlight per chart.
+# Exports at 1400 x 800 px (7 x 4 in at 200 dpi), which fills the 680px article column on retina screens.
+
+figure.figsize: 7, 4
+figure.dpi: 100
+figure.facecolor: FFFFFF
+savefig.dpi: 200
+savefig.facecolor: FFFFFF
+savefig.bbox: standard
+
+font.family: sans-serif
+font.sans-serif: Helvetica, Arial, DejaVu Sans
+font.size: 9
+text.color: 4B5563
+
+axes.facecolor: FFFFFF
+axes.edgecolor: 111418
+axes.linewidth: 1.0
+axes.labelcolor: 4B5563
+axes.labelsize: 9
+axes.labelpad: 8
+axes.titlesize: 9
+axes.titlecolor: 8A93A0
+axes.titlelocation: left
+axes.titlepad: 14
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: True
+axes.grid.axis: y
+axes.axisbelow: True
+# Neutral series first; reach for the accent (EA4F3D) by hand for the one thing the chart is about
+axes.prop_cycle: cycler('color', ['111418', '8A93A0', 'C9CED6', '4B5563'])
+
+grid.color: E5E7EB
+grid.linewidth: 0.8
+
+xtick.color: 4B5563
+ytick.color: 4B5563
+xtick.labelsize: 8
+ytick.labelsize: 8
+xtick.major.size: 0
+ytick.major.size: 0
+xtick.major.pad: 6
+ytick.major.pad: 6
+
+lines.linewidth: 1.6
+patch.linewidth: 0
+
+legend.frameon: False
+legend.fontsize: 8
+legend.labelcolor: 4B5563
