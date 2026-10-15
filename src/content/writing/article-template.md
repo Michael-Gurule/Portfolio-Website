@@ -3,6 +3,9 @@ title: "Article Template: Every Element in One Place"
 date: 2026-10-07
 summary: "A draft that shows how each Markdown element renders. It appears in dev and never in production."
 tags: ["template"]
+# Optional hero for the card and the top of the article. 16:9 reads best (1600 x 900).
+hero: ./images/averages-are-the-wrong-summary/hero.png
+heroAlt: "Describe the image for screen readers"
 draft: true
 ---
 
@@ -36,6 +39,22 @@ def zscore(x: np.ndarray) -> np.ndarray:
 | --- | --- | --- |
 | Fixed threshold | Simple, explainable | Seasonal signals |
 | Peer-group baseline | Local sensitivity | Sparse peer groups |
+
+## Math
+
+Inline math sits in the sentence: the sample mean $\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$ is unbiased. Display math gets its own line:
+
+$$
+\hat{\beta} = (X^\top X)^{-1} X^\top y
+$$
+
+Write a literal dollar sign as `\$`, so \$1,000 stays text.
+
+## Figures
+
+An image on its own line becomes a figure. The quoted title after the path becomes the caption, and the alt text describes the image for screen readers.
+
+![Example image](./images/averages-are-the-wrong-summary/hero.png "Figure 1. A caption explaining what the chart shows.")
 
 ---
 

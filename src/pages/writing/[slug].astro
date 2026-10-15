@@ -1,5 +1,7 @@
 ---
 import { render } from 'astro:content';
+import { Image } from 'astro:assets';
+import 'katex/dist/katex.min.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getArticles, formatDate, isoDate, readingTime, type Article } from '../../lib/writing';
 
@@ -13,7 +15,7 @@ interface Props {
 }
 
 const { article } = Astro.props;
-const { title, date, updated, summary, draft } = article.data;
+const { title, date, updated, summary, hero, heroAlt, draft } = article.data;
 const { Content } = await render(article);
 ---
 
@@ -55,6 +57,13 @@ const { Content } = await render(article);
                     </p>
                     <p class="article-author">By <a href="/about/">Michael Gurule</a></p>
                 </header>
+
+                {hero && (
+                    <figure class="article-hero">
+                        <Image src={hero} alt={heroAlt} widths={[680, 1360]} sizes="(min-width: 46em) 680px, 100vw"
+                            loading="eager" fetchpriority="high" />
+                    </figure>
+                )}
 
                 <div class="article-body prose">
                     <Content />

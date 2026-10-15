@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getArticles, formatDate, isoDate } from '../../lib/writing';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticles } from '../../lib/writing';
 
 const articles = await getArticles();
 ---
 
 <BaseLayout
     title="Writing | Michael Gurule, Applied Scientist and ML Architect"
-    description="Notes on applied statistics, machine learning, and operational data, mostly about where methods stop working."
+    description="Model breakdowns, practical guides, and notes on where data science methods hold, where they break, and what to build around them."
     path="/writing/"
     navActive="writing"
     backToTop="#top"
@@ -16,30 +17,13 @@ const articles = await getArticles();
         <div class="container">
             <h1 class="page-title">Writing</h1>
             <p class="section-subtitle">
-                Some of what I'm reading and working through, written up.<br>
-                Mostly about where methods stop working, which is the part that tends to get left out.
+                Model breakdowns, practical guides, and how I approach problems in data.<br>
+                Most of it comes back to where methods hold, where they break, and what to build around them.
             </p>
 
             {articles.length > 0 ? (
-                <div class="writing-list">
-                    {articles.map(({ id, data }) => (
-                        <a class="writing-row" href={`/writing/${id}/`}>
-                            <time class="writing-date mono-label" datetime={isoDate(data.date)}>
-                                {formatDate(data.date)}
-                            </time>
-                            <div class="writing-body">
-                                {data.draft && <span class="writing-draft mono-label">Draft</span>}
-                                <h2 class="writing-title"><span>{data.title}</span></h2>
-                                <p class="writing-excerpt">{data.summary}</p>
-                            </div>
-                            <span class="writing-arrow" aria-hidden="true">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
-                                </svg>
-                            </span>
-                        </a>
-                    ))}
+                <div class="article-grid">
+                    {articles.map(article => <ArticleCard article={article} />)}
                 </div>
             ) : (
                 <p class="writing-empty">Nothing published here yet.</p>

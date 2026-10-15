@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getArticles } from '../lib/writing';
+
+const latestArticles = (await getArticles()).slice(0, 3);
 ---
 
 <BaseLayout
@@ -283,76 +287,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="container">
             <h2 class="section-title fade-in" data-reveal="left">Writing</h2>
             <p class="section-subtitle fade-in fade-in-delay-1" data-reveal="left">
-                Some of what I'm reading and working through, written up.<br>
-                Mostly about where methods stop working, which is the part that tends to get left out.
+                Model breakdowns, practical guides, and how I approach problems in data.<br>
+                Most of it comes back to where methods hold, where they break, and what to build around them.
             </p>
 
-            <div class="writing-list">
-                <a class="writing-row fade-in" data-reveal="up"
-                    href="https://medium.com/@michaelgurule1164/the-newcomb-paradox-what-a-thought-experiment-can-teach-us-about-trusting-models-beb11d1682b6"
-                    target="_blank" rel="noopener">
-                    <time class="writing-date mono-label" datetime="2026-03-09">Mar 9, 2026</time>
-                    <div class="writing-body">
-                        <h3 class="writing-title"><span>The Newcomb Paradox: What a Thought Experiment Can Teach Us
-                                About Trusting Models</span></h3>
-                        <p class="writing-excerpt">
-                            The paradox will not tell you whether to take one box or two. But it will ask you, with
-                            remarkable precision, whether you understand the system you are operating in well enough
-                            to make that call.
-                        </p>
-                    </div>
-                    <span class="writing-arrow" aria-hidden="true">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
-                        </svg>
-                    </span>
-                </a>
-
-                <a class="writing-row fade-in fade-in-delay-1" data-reveal="up"
-                    href="https://medium.com/@michaelgurule1164/the-agentic-trap-db73b00d53db" target="_blank"
-                    rel="noopener">
-                    <time class="writing-date mono-label" datetime="2026-02-08">Feb 8, 2026</time>
-                    <div class="writing-body">
-                        <h3 class="writing-title"><span>The Agentic Trap</span></h3>
-                        <p class="writing-excerpt">
-                            We can't escape it. The current buzz word being thrown around in every strategy meeting
-                            and quarterly earnings call is agentic.
-                        </p>
-                    </div>
-                    <span class="writing-arrow" aria-hidden="true">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
-                        </svg>
-                    </span>
-                </a>
-
-                <a class="writing-row fade-in fade-in-delay-2" data-reveal="up"
-                    href="https://medium.com/@michaelgurule1164/net-positive-a-data-scientists-philosophy-for-building-what-matters-94225a8d7eea"
-                    target="_blank" rel="noopener">
-                    <time class="writing-date mono-label" datetime="2026-01-16">Jan 16, 2026</time>
-                    <div class="writing-body">
-                        <h3 class="writing-title"><span>Net Positive: A Data Scientist's Philosophy for Building What
-                                Matters</span></h3>
-                        <p class="writing-excerpt">
-                            The best technical talent doesn't just build impressive systems. They build systems that
-                            create lasting value while respecting organizational constraints and operator needs.
-                        </p>
-                    </div>
-                    <span class="writing-arrow" aria-hidden="true">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
-                        </svg>
-                    </span>
-                </a>
+            <div class="article-grid">
+                {latestArticles.map((article, i) => (
+                    <ArticleCard article={article} headingLevel={3}
+                        class={`fade-in${i ? ` fade-in-delay-${i}` : ''}`} />
+                ))}
             </div>
 
             <div class="writing-cta fade-in">
-                <a href="https://medium.com/@michaelgurule1164" class="btn btn-secondary" target="_blank"
-                    rel="noopener">
-                    Read More on Medium
+                <a href="/writing/" class="btn btn-secondary">
+                    All writing
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" />
