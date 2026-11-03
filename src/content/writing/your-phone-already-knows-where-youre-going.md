@@ -1,10 +1,10 @@
 ---
 title: "Your Phone Already Knows Where You're Going"
 date: 2026-11-02
-summary: "The surprising predictability of human routine."
+summary: "We move through our weeks with far more regularity than we notice. The coffee shop, the commute, the Sunday call home. Each choice feels free in the moment, and each one is. Together, though, they draw a pattern so consistent that a simple algorithm can read it."
 tags: [Machine Learning, Statistics, On-Device Models]
 hero: ./images/your-phone-already-knows-where-youre-going/hero.png
-heroAlt: "Title: The surprising predictability of human routine."
+heroAlt: "Title: The Surprising Predictability of Human Routine."
 draft: false
 ---
 
@@ -43,7 +43,7 @@ The math behind this update dates to the 1760s and a rule named for the English 
 
 ## How predictable are we, really?
 
-Most of us like to think of ourselves as at least a little spontaneous, but the data tends to disagree.
+> Most of us like to think of ourselves as at least a little spontaneous, but the data tends to disagree.
 
 In 2010, a team of physicists led by Chaoming Song and Albert-László Barabási published a study in *Science* that asked a blunt question: how predictable is human movement? They analyzed anonymized mobile phone records from about 50,000 people over three months, tracking which cell towers each phone connected to over time.
 
@@ -51,7 +51,7 @@ They measured the randomness in each person's movement using a quantity borrowed
 
 The number came out at 93 percent.
 
-That figure means something specific—It doesn't claim that the model’s prediction is right 93 percent of the time. It says that a good enough model could, in principle, predict a typical person's location that often, because the pattern lives in the data. The remaining seven percent belongs to the unexpected: the road trip, the detour, the friend who calls with a last-minute invitation.
+That figure means something specific—it doesn't claim that the model’s prediction is right 93 percent of the time. It says that a good enough model could, in principle, predict a typical person's location that often, because the pattern lives in the data. The remaining seven percent belongs to the unexpected: the road trip, the detour, the friend who calls with a last-minute invitation.
 
 The part of the study that surprised me most came next. The researchers expected people who travel long distances, who cover more ground and visit more places, to resist prediction, but they didn't. Predictability held steady across people, whether they rarely left their neighborhood or regularly crossed a larger region. Covering more ground didn't make anyone more random, it just made their pattern bigger.
 
@@ -65,4 +65,4 @@ These errors reveal the system’s logic, it works on frequencies. It knows what
 
 This capability makes some people uneasy, and that unease deserves a straight answer. A record of where you go reveals a lot: where you sleep, where you work, who you visit, which doctor you see. Phone makers have largely moved this processing onto the device itself and given people controls to review and delete it. Use them if the trade doesn't sit right with you.
 
-The bigger lesson concerns us more than our phones. We move through our weeks with far more regularity than we notice. The coffee shop, the commute, the Sunday call home. Each choice feels free in the moment, and each one is. Together, though, they draw a pattern so consistent that a simple algorithm can read it. 
+The bigger lesson concerns us more than our phones. We move through our weeks with far more regularity than we notice. The coffee shop, the commute, the Sunday call home. Each choice feels free in the moment, and each one is. Together, though, they draw a pattern so consistent that a simple algorithm can read it.
