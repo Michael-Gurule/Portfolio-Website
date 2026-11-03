@@ -4,8 +4,9 @@ date: 2026-10-07
 summary: "A draft that shows how each Markdown element renders. It appears in dev and never in production."
 tags: ["template"]
 # Optional hero for the card and the top of the article. 16:9 reads best (1600 x 900).
-hero: ./images/<slug>/hero.png
-heroAlt: "Describe the image for screen readers"
+# Leave these commented: `npm run hero -- <slug>` writes ./images/<slug>/hero.png and adds both lines.
+# hero: ./images/<slug>/hero.png
+# heroAlt: "Describe the image for screen readers"
 draft: true
 ---
 
