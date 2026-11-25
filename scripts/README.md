@@ -45,3 +45,11 @@ Place a chart in an article on its own line. The quoted text becomes the caption
 ```markdown
 ![Alt text describing the chart](./images/<folder>/<name>.png "Figure 1. What the chart shows.")
 ```
+
+## Site icons
+
+```sh
+python3 scripts/make_icons.py
+```
+
+Regenerates `public/favicon.ico` (16/32/48), `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png` and `icon-512.png` from the master `public/Assets/images/icons/icon-full.jpg`. Tab sizes use a tight crop of the letters without the underline; the larger icons keep the full design. Replace the master and rerun to change the logo.

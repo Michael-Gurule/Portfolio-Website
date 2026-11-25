@@ -602,84 +602,23 @@ pre {
 /* ========================================
    8. ABOUT SECTION
    ======================================== */
+/* White band: the one tonal break between the hero and Current Work */
+.about {
+    background: var(--surface);
+}
+
 .about-content {
     display: grid;
-    gap: var(--space-14);
+    gap: var(--space-8);
     align-items: start;
     margin-top: var(--space-10);
-}
-
-.about-image {
-    position: relative;
-    width: 100%;
-    max-width: 340px;
-}
-
-.image-frame {
-    position: relative;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    aspect-ratio: 1;
-}
-
-.image-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.location-badge {
-    position: absolute;
-    bottom: -18px;
-    right: -14px;
-    width: 112px;
-    height: 74px;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    clip-path: url(#colorado-clip);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card-hover);
-}
-
-.location-badge-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    width: 100%;
-    height: 100%;
-    padding: 0 var(--space-3);
-}
-
-.location-pin {
-    flex-shrink: 0;
-    color: var(--accent);
-}
-
-.location-city {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    white-space: nowrap;
-}
-
-.about-title {
-    font-family: var(--font-mono);
-    font-size: 0.78125rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--accent-strong);
-    margin-bottom: var(--space-3);
 }
 
 .about-role {
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: clamp(1.375rem, 2.4vw, 1.75rem);
-    line-height: 1.3;
+    font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+    line-height: 1.18;
     color: var(--ink);
     text-wrap: balance;
 }
@@ -690,16 +629,32 @@ pre {
 
 .about-body {
     max-width: 62ch;
-    margin: 26px 0;
+    margin: 0;
 }
 
-.about-credentials {
-    font-family: var(--font-mono);
-    font-size: 0.78125rem;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-    padding-top: 18px;
+/* Facts strip: 2 x 2 on phones, one ruled row of four from tablet up */
+.about-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 var(--space-6);
+    margin: var(--space-12) 0 0;
+}
+
+.about-fact {
+    padding: var(--space-5) 0;
     border-top: 1px solid var(--rule);
+}
+
+.about-fact dt {
+    font-size: 0.6875rem;
+    margin-bottom: var(--space-2);
+}
+
+.about-fact dd {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    color: var(--ink);
 }
 
 .about-more {
@@ -1891,12 +1846,29 @@ html.bio-open {
 /* Tablet - 832px */
 @media (min-width: 52em) {
     .about-content {
-        grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
         gap: var(--space-18);
     }
 
-    .about-image {
-        max-width: none;
+    .about-text {
+        padding-top: 0.35em;
+    }
+
+    .about-facts {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        margin-top: var(--space-14);
+        border-top: 1px solid var(--rule);
+    }
+
+    .about-fact {
+        padding: var(--space-6) var(--space-6) 0 0;
+        border-top: 0;
+    }
+
+    .about-fact + .about-fact {
+        padding-left: var(--space-6);
+        border-left: 1px solid var(--rule);
     }
 
     .decisions,

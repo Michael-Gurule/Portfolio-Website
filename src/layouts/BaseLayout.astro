@@ -66,8 +66,9 @@ const ogImage = new URL('/Assets/images/og.png', Astro.site).href;
     {twitterText && <meta name="twitter:image:alt" content={siteName}>}
 
     <!-- Icons -->
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/Assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/Assets/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/Assets/images/icons/icon-192.png" type="image/png" sizes="192x192">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#F7F8FA">
 

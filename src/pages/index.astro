@@ -91,46 +91,16 @@ const latestArticles = (await getArticles()).slice(0, 3);
         <div class="container">
             <h2 class="section-title fade-in" data-reveal="left">About</h2>
             <div class="about-content">
-                <div class="about-image fade-in" data-reveal="left">
-                    <div class="image-frame">
-                        <img src="Assets/images/profile/headshot.png" alt="Michael Gurule" width="1180" height="1180"
-                            loading="lazy">
-                    </div>
-                    <div class="location-badge">
-                        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-                            <defs>
-                                <clipPath id="colorado-clip" clipPathUnits="objectBoundingBox">
-                                    <path
-                                        d="M0.034,0 L1,0 L1,0.987 L0.966,0.987 L0.966,1 L0,1 L0,0.013 L0.034,0.013 Z" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <div class="location-badge-inner">
-                            <svg class="location-pin" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                                aria-hidden="true">
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-                                <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none" />
-                            </svg>
-                            <span class="location-city">Denver, CO</span>
-                        </div>
-                    </div>
-                </div>
+                <p class="about-role fade-in" data-reveal="left">
+                    Designing the models and cloud architecture that turn
+                    <span class="about-role-accent">operational data into early warning.</span>
+                </p>
                 <div class="about-text fade-in fade-in-delay-1" data-reveal="right">
-                    <p class="about-title">Principal Engineer II &middot; Telemetry and AI Operational Intelligence</p>
-                    <p class="about-role">
-                        Designing the models and cloud architecture that turn
-                        <span class="about-role-accent">operational data into early warning.</span>
-                    </p>
                     <p class="about-body">
                         Right now I lead a greenfield anomaly detection, correlation, and forecasting platform built for
                         a network of about 32 million broadband endpoints. Before that I spent close to a decade in consulting and
                         applied data science across financial services, insurance risk, and industrial commodities,
                         learning each industry well enough to understand what its data was saying.
-                    </p>
-                    <p class="about-credentials">
-                        MS Applied Mathematics &middot; BS Finance and Risk &middot; AWS Certified Machine Learning
-                        Engineer
                     </p>
                     <a href="about/" class="text-link about-more" data-bio-open>
                         Read the full story
@@ -141,6 +111,24 @@ const latestArticles = (await getArticles()).slice(0, 3);
                     </a>
                 </div>
             </div>
+            <dl class="about-facts fade-in" data-reveal="up">
+                <div class="about-fact">
+                    <dt class="mono-label">Now</dt>
+                    <dd>Principal Engineer II, Telemetry and AI Operational Intelligence</dd>
+                </div>
+                <div class="about-fact">
+                    <dt class="mono-label">Education</dt>
+                    <dd>MS Applied Mathematics<br>BS Finance and Risk</dd>
+                </div>
+                <div class="about-fact">
+                    <dt class="mono-label">Certified</dt>
+                    <dd>AWS Machine Learning Engineer</dd>
+                </div>
+                <div class="about-fact">
+                    <dt class="mono-label">Based</dt>
+                    <dd>Denver, CO</dd>
+                </div>
+            </dl>
         </div>
     </section>
 
