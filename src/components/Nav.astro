@@ -21,10 +21,6 @@ const sections = [
 <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
         <a href={onHome ? '#hero' : '/'} class="wordmark nav-wordmark">Michael Gurule</a>
-        <div class="nav-status">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span class="status-label">Open to opportunities</span>
-        </div>
         <ul class="nav-links">
             {sections.map(({ id, label }) => (
                 <li>
