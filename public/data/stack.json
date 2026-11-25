@@ -6,7 +6,7 @@
     },
     {
       "name": "Cloud and Systems",
-      "items": ["AWS (SageMaker, MSK, Managed Flink, Glue, Athena, Neptune, EventBridge)", "Kafka", "Spark", "Docker", "Kubernetes", "CI/CD"]
+      "items": ["GCP (Vertex AI, BigQuery)", "AWS (SageMaker, MSK, Managed Flink, Glue, Athena, Neptune, EventBridge)", "Kafka", "Spark", "Docker", "Kubernetes", "CI/CD"]
     },
     {
       "name": "Applied AI",

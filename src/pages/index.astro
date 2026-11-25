@@ -8,8 +8,8 @@ const latestArticles = (await getArticles()).slice(0, 3);
 
 <BaseLayout
     title="Michael Gurule, Applied Scientist and ML Architect"
-    description="I build statistical and machine learning systems for operational data that arrives noisy, unlabeled, and shifting, and I design the cloud systems that keep them working after launch."
-    keywords="data science, machine learning engineer, anomaly detection, time series, Bayesian statistics, optimization, information theory, production ML, telemetry, AWS"
+    description="I build statistical and machine learning systems for data that arrives noisy, fast, and shifting, and I design the cloud systems that keep them working after launch."
+    keywords="data science, machine learning engineer, anomaly detection, time series, Bayesian statistics, optimization, information theory, production ML, real-time ML, MLOps, trading, telemetry, AWS, GCP"
     ogDescription="I build statistical models for noisy, sparsely labeled, shifting data, and design the cloud systems that keep them working after launch."
     path="/"
     twitterText
@@ -92,15 +92,17 @@ const latestArticles = (await getArticles()).slice(0, 3);
             <h2 class="section-title fade-in" data-reveal="left">About</h2>
             <div class="about-content">
                 <p class="about-role fade-in" data-reveal="left">
-                    Designing the models and cloud architecture that turn
-                    <span class="about-role-accent">operational data into early warning.</span>
+                    Building the models and automation that put machine learning
+                    <span class="about-role-accent">inside live trading decisions.</span>
                 </p>
                 <div class="about-text fade-in fade-in-delay-1" data-reveal="right">
                     <p class="about-body">
-                        Right now I lead a greenfield anomaly detection, correlation, and forecasting platform built for
-                        a network of about 32 million broadband endpoints. Before that I spent close to a decade in consulting and
-                        applied data science across financial services, insurance risk, and industrial commodities,
-                        learning each industry well enough to understand what its data was saying.
+                        Now I build machine learning and automation for a sports trading operation, taking routine
+                        decisions off traders and surfacing the ones that need a person. Before that I led a greenfield
+                        anomaly detection, correlation, and forecasting platform for a network of about 32 million
+                        broadband endpoints. Earlier, I spent close to a decade in consulting and applied data science
+                        across financial services, insurance risk, and industrial commodities, learning each industry
+                        well enough to understand what its data was saying.
                     </p>
                     <a href="about/" class="text-link about-more" data-bio-open>
                         Read the full story
@@ -114,7 +116,7 @@ const latestArticles = (await getArticles()).slice(0, 3);
             <dl class="about-facts fade-in" data-reveal="up">
                 <div class="about-fact">
                     <dt class="mono-label">Now</dt>
-                    <dd>Principal Engineer II, Telemetry and AI Operational Intelligence</dd>
+                    <dd>Senior Data Scientist, AI and Automation</dd>
                 </div>
                 <div class="about-fact">
                     <dt class="mono-label">Education</dt>
@@ -137,15 +139,35 @@ const latestArticles = (await getArticles()).slice(0, 3);
         <div class="container">
             <h2 class="section-title fade-in" data-reveal="left">Current Work</h2>
             <p class="section-subtitle fade-in fade-in-delay-1" data-reveal="left">
-                The network already reported its health every five minutes. The hard part was reading it: hand-set
-                thresholds that couldn't tell a daily traffic peak from a fault, and alerts that could only be grouped
-                by whichever team a device belonged to.
+                Trading runs on fast decisions made against a market that never stops moving. The work is putting
+                models inside those decisions: scoring what changes in real time, automating what traders shouldn't
+                have to watch, and proving each change on live outcomes.
             </p>
 
+            <div class="decisions">
+                <div class="decision fade-in" data-reveal="up">
+                    <h3>Signals a trader can act on</h3>
+                    <p>Prices, liabilities, and betting activity shift by the second during a live event. Models score
+                        those streams as they arrive and raise the movements worth a trader's attention, not every
+                        movement.</p>
+                </div>
+                <div class="decision fade-in fade-in-delay-1" data-reveal="up">
+                    <h3>Automation with people on the exceptions</h3>
+                    <p>Routine adjustments move to automated pipelines with clear limits. Traders keep the judgment
+                        calls, and their overrides feed back into training.</p>
+                </div>
+                <div class="decision fade-in fade-in-delay-2" data-reveal="up">
+                    <h3>Measured on live outcomes</h3>
+                    <p>Every model ships with an experiment design and production monitoring on GCP. A model earns its
+                        place by what it changes in live trading, not by its score on a holdout set.</p>
+                </div>
+            </div>
+
+            <h3 class="previous-title mono-label fade-in" data-reveal="left">Previously</h3>
             <ul class="figures fade-in" data-reveal="up">
                 <li class="figure">
                     <span class="figure-value">~1B</span>
-                    <span class="figure-label mono-label">series scored today</span>
+                    <span class="figure-label mono-label">series scored daily</span>
                 </li>
                 <li class="figure">
                     <span class="figure-value">6&ndash;12B</span>
@@ -157,42 +179,11 @@ const latestArticles = (await getArticles()).slice(0, 3);
                 </li>
             </ul>
             <p class="figures-note fade-in" data-reveal="up">
-                It started with a single streaming app. Video is nearly fully onboarded, and the remaining domains are
-                coming on one at a time.
+                A greenfield anomaly detection, correlation, and forecasting platform for broadband telemetry. I owned
+                the modeling and AWS architecture as it grew from a single streaming app to calendar-aware detection
+                and topology-based root-cause correlation in production, with forecasting and agentic operations next
+                on the roadmap I set.
             </p>
-
-            <div class="decisions">
-                <div class="decision fade-in" data-reveal="up">
-                    <h3>Baselines that know the calendar</h3>
-                    <p>Telemetry swings by hour, day, month, and season, and fixed thresholds treated every peak as a
-                        fault. Each signal is now scored against a baseline that carries those cycles, so normal swings
-                        stop opening tickets.</p>
-                </div>
-                <div class="decision fade-in fade-in-delay-1" data-reveal="up">
-                    <h3>Root cause, not team boundaries</h3>
-                    <p>Alerts used to be grouped only by the team a device was assigned to. Correlation now follows the
-                        network topology, tracing a degradation upstream to its source and out to the services,
-                        markets, device models, and software versions it touches.</p>
-                </div>
-                <div class="decision fade-in fade-in-delay-2" data-reveal="up">
-                    <h3>Tuned by the pipeline, checked by people</h3>
-                    <p>A statistical scorer sets the floor, and an automated tuning pipeline retunes the model stack on
-                        its own. Drift alerts say when to look, and every flagged anomaly is reviewed and labeled. Those
-                        labels feed back into training.</p>
-                </div>
-            </div>
-
-            <!-- Roadmap: set data-current to the phase in progress (1 to 4) -->
-            <div class="roadmap fade-in" data-reveal="up" data-current="4">
-                <ol class="roadmap-steps">
-                    <li><span class="roadmap-phase mono-label">Live</span>Detection</li>
-                    <li><span class="roadmap-phase mono-label">Live</span>Correlation</li>
-                    <li><span class="roadmap-phase mono-label">Near-term ready</span>Forecasting</li>
-                    <li><span class="roadmap-phase mono-label">In design</span>Agentic operations</li>
-                </ol>
-                <p class="roadmap-note">Now defining the operating flow and guardrails for agents that act on what the
-                    platform finds, alongside security and policy review.</p>
-            </div>
         </div>
     </section>
 
@@ -215,9 +206,9 @@ const latestArticles = (await getArticles()).slice(0, 3);
                 <div class="work-column fade-in fade-in-delay-2" data-reveal="scale">
                     <h3>ML Architecture</h3>
                     <ul>
-                        <li>Streaming inference on AWS for fleet telemetry</li>
+                        <li>Streaming and real-time inference on AWS and GCP</li>
                         <li>Root-cause correlation across network topology</li>
-                        <li>Feature budgets under compute limits</li>
+                        <li>Feature budgets under latency and compute limits</li>
                         <li>Validation under temporal dependence</li>
                         <li>Drift detection, automated tuning, and retraining</li>
                     </ul>
@@ -229,13 +220,13 @@ const latestArticles = (await getArticles()).slice(0, 3);
                         <li>Platform roadmaps from detection to agentic operations</li>
                         <li>Evaluation design and ground truth strategy</li>
                         <li>Release standards: SLAs, thresholds, promotion</li>
-                        <li>Guardrails for agents acting on detections</li>
+                        <li>Guardrails for automation acting on live decisions</li>
                     </ul>
                 </div>
             </div>
 
             <p class="work-applied fade-in" data-reveal="up">
-                Applied across network and device telemetry, insurance risk, marketing attribution, satellite health,
+                Applied across sports trading, network and device telemetry, insurance risk, marketing attribution, satellite health,
                 and multi-sensor positioning.
             </p>
 

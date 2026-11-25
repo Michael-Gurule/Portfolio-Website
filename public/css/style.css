@@ -806,6 +806,19 @@ html.bio-open {
     gap: var(--space-7);
 }
 
+/* Prior platform figures, shown after the current-role decisions */
+.previous-title {
+    margin-top: var(--space-14);
+}
+
+.previous-title + .figures {
+    margin-top: var(--space-5);
+}
+
+.previous-title ~ .figures-note {
+    margin-bottom: 0;
+}
+
 .decision h3 {
     margin-bottom: 10px;
 }

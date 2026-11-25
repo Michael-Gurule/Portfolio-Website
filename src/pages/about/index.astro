@@ -19,19 +19,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                     data you fit last week isn’t the data running today. I spend most of my time on that end of the
                     problem, and then on building the systems that carry whatever survives it into production and keep
                     it working once it’s there.</p>
-                <p>Right now I’m a principal engineer on a greenfield platform for anomaly detection, correlation, and
-                    forecasting, built for roughly 32 million broadband endpoints. I own the modeling and the design of
-                    the cloud architecture underneath it, and I work with leadership on where the platform goes next. The current
-                    answer is agents that act on what the platform finds, so a lot of my recent thinking has gone into
-                    what those agents should and shouldn’t be allowed to do.</p>
-                <p>The hard parts there have surprisingly little to do with picking a model. At 32 million devices, a
-                    separate model per device isn’t practical, and a single global model only notices the biggest
-                    failures. So I score each device against comparable devices in comparable operating states. Daily
-                    load cycles look like faults to a fixed threshold, so seasonality has to live inside the baseline.
-                    And a five-minute cadence across a fleet that size puts a hard ceiling on how much computation any
-                    one device gets, which turns feature selection from a preference into a budget. Labels were the other gap.
-                    Every anomaly the platform flags now goes to an analyst who confirms it and adds context, so the
-                    ground truth gets stronger the longer the system runs.</p>
+                <p>Right now I’m a senior data scientist on an AI and automation team inside a sports trading
+                    operation. The work is putting machine learning into decisions that used to run on rules and trader
+                    attention: scoring live markets as they move, automating the routine calls, and sending the rest to
+                    a person with the context to decide quickly. Trading tests everything below, because the data shifts
+                    by the minute and every model gets judged on live outcomes.</p>
+                <p>Before this I was a principal engineer on a greenfield platform for anomaly detection, correlation,
+                    and forecasting, built for roughly 32 million broadband endpoints. I owned the modeling and the cloud
+                    architecture underneath it, and set the roadmap with leadership through to agents that act on what
+                    the platform finds. The hard parts had surprisingly little to do with picking a model. At 32 million
+                    devices, a separate model per device wasn’t practical, and a single global model only noticed the
+                    biggest failures. So I scored each device against comparable devices in comparable operating
+                    states. Daily load cycles look like faults to a fixed threshold, so seasonality had to live inside
+                    the baseline. And a five-minute cadence across a fleet that size put a hard ceiling on how much
+                    computation any one device got, which turned feature selection from a preference into a budget.
+                    Labels were the other gap. I routed every flagged anomaly to an analyst who confirmed it and added
+                    context, so the ground truth got stronger the longer the system ran.</p>
                 <p>I rarely use a modeling framework as packaged. I’ll read through the source of something like Prophet
                     or AutoGluon to see how it handles one specific piece, then write my own version of just that piece
                     for our data. An automated tuning pipeline then keeps the parameters current as the data shifts. Choosing the method is most of the work, and it depends on knowing where each one
@@ -39,7 +42,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                     answer. Deep sequence models earn their place when the structure calls for them. The fitting,
                     regularization, and validation around that choice gets less attention, but it’s usually what
                     separates a model that looks good on a holdout set from one that still works six months later.</p>
-                <p>Before this I spent close to a decade in consulting and applied data science across financial
+                <p>Earlier, I spent close to a decade in consulting and applied data science across financial
                     services, insurance risk, and industrial commodities. Every project meant learning an industry well enough to
                     understand what its data was saying, then building something that fit it. The most useful thing I
                     took from those years: how to take a question nobody has phrased clearly yet and make it
